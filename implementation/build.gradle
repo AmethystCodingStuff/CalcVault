@@ -1,0 +1,16 @@
+plugins {
+    id 'com.android.library' version '8.6.1' apply false
+}
+
+configurations {
+    baksmaliRuntime
+}
+
+dependencies {
+    baksmaliRuntime 'org.smali:baksmali:2.5.2'
+}
+
+tasks.register('copyBaksmaliRuntime', Copy) {
+    from configurations.baksmaliRuntime
+    into "$buildDir/baksmali-runtime"
+}

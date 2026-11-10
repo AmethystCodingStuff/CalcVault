@@ -1,0 +1,15 @@
+# Android/Gradle generated files
+.gradle/
+**/.gradle/
+**/build/
+local.properties
+
+# Signing keys and credentials
+*.jks
+*.keystore
+*.p12
+*.pem
+
+# Original source package is user-provided and intentionally not in this repo
+original-calculator-9.3.apk
+com.google.android.calculator_9.3.zip
