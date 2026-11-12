@@ -1,0 +1,19 @@
+package defpackage;
+
+/* JADX INFO: compiled from: PG */
+/* JADX INFO: loaded from: classes2.dex */
+public final class dgp extends dcd {
+    public static final dgn a = new dgn();
+
+    public final boolean equals(Object obj) {
+        throw null;
+    }
+
+    public final int hashCode() {
+        throw null;
+    }
+
+    public final String toString() {
+        throw null;
+    }
+}

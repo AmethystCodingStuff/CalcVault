@@ -1,0 +1,12 @@
+package defpackage;
+
+/* JADX INFO: compiled from: PG */
+/* JADX INFO: loaded from: classes2.dex */
+final class cjo {
+    cjo() {
+    }
+
+    static boolean a() {
+        return cjp.t();
+    }
+}

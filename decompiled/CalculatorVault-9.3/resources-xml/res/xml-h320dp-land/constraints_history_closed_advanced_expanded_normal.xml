@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConstraintSet xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/history_closed_advanced_expanded_normal">
+    <Constraint
+        android:orientation="vertical"
+        android:id="@+id/advanced_basic_divider"
+        app:layout_constraintGuide_percent="@fraction/advanced_expanded_basic_divider_screen_percent"/>
+</ConstraintSet>

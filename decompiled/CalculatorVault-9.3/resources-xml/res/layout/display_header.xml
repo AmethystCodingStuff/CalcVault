@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:textSize="@dimen/display_header_text_size"
+    android:id="@+id/current_expression_header"
+    android:paddingTop="16dp"
+    android:visibility="gone"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/title_current_expression"
+    android:alpha="0"
+    android:layoutDirection="locale"
+    android:paddingStart="@dimen/display_padding"
+    android:paddingEnd="@dimen/display_padding"
+    style="@style/DisplayLabelTextStyle"/>

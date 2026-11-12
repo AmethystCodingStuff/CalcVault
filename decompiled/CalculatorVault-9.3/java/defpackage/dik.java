@@ -1,0 +1,28 @@
+package defpackage;
+
+/* JADX INFO: compiled from: PG */
+/* JADX INFO: loaded from: classes2.dex */
+public final class dik extends dgm {
+    public static final /* synthetic */ int c = 0;
+
+    static {
+        new dik();
+    }
+
+    @Override // defpackage.dgm
+    public final void d(dcn dcnVar, Runnable runnable) {
+        if (((din) dcnVar.get(din.a)) == null) {
+            throw new UnsupportedOperationException("Dispatchers.Unconfined.dispatch function can only be used by the yield function. If you wrap Unconfined dispatcher in your code, make sure you properly delegate isDispatchNeeded and dispatch calls.");
+        }
+    }
+
+    @Override // defpackage.dgm
+    public final boolean e() {
+        return false;
+    }
+
+    @Override // defpackage.dgm
+    public final String toString() {
+        return "Dispatchers.Unconfined";
+    }
+}
