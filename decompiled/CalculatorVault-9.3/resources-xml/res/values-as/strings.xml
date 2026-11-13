@@ -52,7 +52,7 @@
     <string name="common_google_play_services_updating_client_title">Google Play সেৱা আপডে’ট কৰি থকা হৈছে</string>
     <string name="common_google_play_services_updating_text">Google Play সেৱাৰ আপডে’ট সম্পূৰ্ণ হ’লে %1$s উপলব্ধ হ’ব।</string>
     <string name="common_google_play_services_wear_update_text">%1$s ব্যৱহাৰ কৰিবলৈ Google Play সেৱা আপডে’ট কৰক।</string>
-    <string name="common_open_on_phone">ফ\'নত খোলক</string>
+    <string name="common_open_on_phone">"ফ'নত খোলক"</string>
     <string name="desc_clr">আটাইবোৰ মচক</string>
     <string name="desc_comma">কমা</string>
     <string name="desc_const_e">অইলাৰৰ নম্বৰ</string>
@@ -66,10 +66,10 @@
     <string name="desc_final_result_long_click_action_hint">কাৰ্যৰ ৱিণ্ড’ দেখুৱাওক</string>
     <string name="desc_formula">কোনো সূত্ৰ নাই</string>
     <string name="desc_fun_10pow">ইয়াৰ বাবে দহৰ ঘাত</string>
-    <string name="desc_fun_arccos">বিপৰীত ক\'ছাইন</string>
+    <string name="desc_fun_arccos">"বিপৰীত ক'ছাইন"</string>
     <string name="desc_fun_arcsin">বিপৰীত ছাইন</string>
     <string name="desc_fun_arctan">বিপৰীত টেনজেণ্ট</string>
-    <string name="desc_fun_cos">ক\'ছাইন</string>
+    <string name="desc_fun_cos">"ক'ছাইন"</string>
     <string name="desc_fun_exp">সূচক অপেক্ষক</string>
     <string name="desc_fun_ln">স্বাভাৱিক ঘাতাংক</string>
     <string name="desc_fun_log">ঘাতাংক</string>
@@ -81,7 +81,7 @@
     <string name="desc_memory_add">মেম’ৰীত যোগ দিয়ক</string>
     <string name="desc_memory_recall">মেম’ৰীৰ পৰা আহ্বান</string>
     <string name="desc_memory_store">মেম’ৰীত ষ্ট’ৰ কৰক</string>
-    <string name="desc_memory_subtract">মেম\'ৰিত বিয়োগ</string>
+    <string name="desc_memory_subtract">"মেম'ৰিত বিয়োগ"</string>
     <string name="desc_op_add">যোগ চিন</string>
     <string name="desc_op_div">হৰণ চিন</string>
     <string name="desc_op_fact">গৌণিক</string>
@@ -103,7 +103,7 @@
     <string name="desc_toggle_history_on">ইতিহাস ম’ড অন আছে</string>
     <string name="dialog_clear">ইতিহাস আৰু মেম’ৰী মচিবনে?</string>
     <string name="dismiss">বাতিল কৰক</string>
-    <string name="domain_error">ড\'মেইনৰ আসোঁৱাহ</string>
+    <string name="domain_error">"ড'মেইনৰ আসোঁৱাহ"</string>
     <string name="error_a11y_label">Error: invalid</string>
     <string name="error_aborted">ত্যাগ কৰা হৈছে</string>
     <string name="error_nan">অনিৰ্দিষ্ট</string>
@@ -119,7 +119,7 @@
     <string name="menu_help">সহায়</string>
     <string name="menu_licenses">মুক্ত উত্‍সৰ অনুজ্ঞাপত্ৰসমূহ</string>
     <string name="menu_privacy">গোপনীয়তাৰ নীতি</string>
-    <string name="msg_incomplete_history">আপুুনি কেৱল শেহতীয়া ইতিহাস চাব পাৰিব। এই সমস্যা সমাধান কৰাৰ চেষ্টা কৰিবলৈ ছেটিঙলৈ গৈ এপৰ অথবা এপৰ ষ্ট\'ৰেজৰ ডেটা মচক।</string>
+    <string name="msg_incomplete_history">"আপুুনি কেৱল শেহতীয়া ইতিহাস চাব পাৰিব। এই সমস্যা সমাধান কৰাৰ চেষ্টা কৰিবলৈ ছেটিঙলৈ গৈ এপৰ অথবা এপৰ ষ্ট'ৰেজৰ ডেটা মচক।"</string>
     <string name="msg_no_space">অধিক সময়ৰ ইতিহাস ছেভ কৰিবলৈ এই ডিভাইচত পৰ্যাপ্ত খালী ঠাই নাই।</string>
     <string name="mtrl_button_snackbar_close_content_description">Close</string>
     <string name="mtrl_checkbox_state_description_checked">Checked</string>

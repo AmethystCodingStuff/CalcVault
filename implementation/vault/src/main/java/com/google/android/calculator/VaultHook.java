@@ -30,13 +30,16 @@ public final class VaultHook {
             Object token = ((List<?>) tokenList).get(0);
             if (!"akt".equals(token.getClass().getSimpleName())) return false;
             String raw = (String) token.getClass().getField("a").get(token);
-            if (!"0000".equals(raw)) return false;
+            if (!PinManager.validPin(raw)) return false;
 
             // Reject active edit-buffer state: only a committed, single number token is accepted.
             Field pendingField = controller.getClass().getDeclaredField("aM");
             pendingField.setAccessible(true);
             Object pending = pendingField.get(controller);
             if (!(pending instanceof String) || !((String) pending).isEmpty()) return false;
+
+            Context context = (Context) controller.getClass().getMethod("bJ").invoke(controller);
+            if (!PinManager.calculatorPinMatches(context, raw)) return false;
 
             // Existing clear-button path resets the model and displayed formula without evaluation.
             Method clear = controller.getClass().getMethod("aw");
@@ -46,7 +49,6 @@ public final class VaultHook {
                 return false;
             }
 
-            Context context = (Context) controller.getClass().getMethod("bJ").invoke(controller);
             Intent intent = new Intent(context, VaultActivity.class);
             if (!(context instanceof android.app.Activity)) intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
@@ -55,12 +57,10 @@ public final class VaultHook {
             // Fail closed for an exact PIN if possible: do not silently evaluate/store it.
             try {
                 Object expression = currentExpression(controller);
-                if (isRawPin(expression)) {
-                    Object context = controller.getClass().getMethod("bJ").invoke(controller);
-                    if (context instanceof Context) {
-                        Toast.makeText((Context) context, "Vault could not be opened; input was not accepted.", Toast.LENGTH_LONG).show();
-                        return true;
-                    }
+                Object context = controller.getClass().getMethod("bJ").invoke(controller);
+                if (context instanceof Context && isConfiguredCalculatorPin((Context) context, expression)) {
+                    Toast.makeText((Context) context, "Vault could not be opened; input was not accepted.", Toast.LENGTH_LONG).show();
+                    return true;
                 }
             } catch (Throwable ignored) { }
             return false;
@@ -73,13 +73,14 @@ public final class VaultHook {
         return method.invoke(model, 0L);
     }
 
-    private static boolean isRawPin(Object expression) {
+    private static boolean isConfiguredCalculatorPin(Context context, Object expression) {
         try {
             Object list = expression.getClass().getField("c").get(expression);
             if (!(list instanceof List) || ((List<?>) list).size() != 1) return false;
             Object token = ((List<?>) list).get(0);
-            return "akt".equals(token.getClass().getSimpleName())
-                    && "0000".equals(token.getClass().getField("a").get(token));
+            if (!"akt".equals(token.getClass().getSimpleName())) return false;
+            String raw = (String) token.getClass().getField("a").get(token);
+            return PinManager.validPin(raw) && PinManager.calculatorPinMatches(context, raw);
         } catch (Throwable ignored) {
             return false;
         }

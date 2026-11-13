@@ -1,67 +1,48 @@
-# Google Calculator 9.3 Private Vault — Inspection and Validation Report
+# Google Calculator 9.3 CalcVault — inspection and validation report
 
-**Status:** The original APK was statically inspected; a separate native vault component and narrow equals hook were implemented, rebuilt, and locally signed. The final APK was installed and smoke-tested on one Android 10/API 29 software emulator. This is not a Google-signed release or a complete security audit.
+**Status:** The original package was statically inspected. A separate native vault component, two-stage authentication, and a narrow equals hook are implemented and rebuilt into a locally signed APK. Compile, signature, archive-integrity, and static metadata checks pass. The redesigned UI flows have not been runtime-validated because the available emulator does not resolve the installed package's activities.
 
-## Summary
+## Supplied package and preservation
 
-The uploaded `com.google.android.calculator_9.3.zip` is a complete APK-format package despite its `.zip` extension. It is not a loose source archive. The original remains untouched: the uploaded file and preserved APK-named copy have the same SHA-256 (`ec133658e784bd90ca6de698be3be85041fe5c1c3c1ce12dc4ddf7b6ae22ad3a`) and compare byte-for-byte identical.
+The uploaded `com.google.android.calculator_9.3.zip` is an APK-format package despite its extension. The original is not edited by the repack script. The uploaded copy and preserved APK-named working copy both have SHA-256 `ec133658e784bd90ca6de698be3be85041fe5c1c3c1ce12dc4ddf7b6ae22ad3a` and compare byte-for-byte.
 
-The final rebuilt APK is `/home/ubuntu/work/calculator-vault/implementation/build/CalculatorVault.apk`, package `com.google.android.calculator`, minSdk 29, targetSdk 37. It contains a separate `classes4.dex` and a private non-exported vault activity. It verifies with `apksigner` using a local RSA-3072 key. Its SHA-256 is `3a995d0f3159444a1a389aa1d9633bf68fc2bba15cbd4226e36828a0a369ed06`. The certificate is not Google's; this APK cannot normally update the official signed Calculator installation.
+The rebuilt artifact is `artifacts/CalculatorVault.apk`, package `com.google.android.calculator`, version **9.3 (978998587)** / code **85022647**, minSdk **29**, targetSdk **37**. Current SHA-256: `f4628b36db769982155d2073818f883d1887f3397953549a90af08a9c5264221`. It contains the original three DEX files plus patched `classes2.dex` and new `classes4.dex`; the extra DEX contains the vault component. The APK verifies with a locally generated RSA-3072 signer, not Google's certificate. It cannot normally update the official Google-signed installation.
 
-## Supplied APK inventory and identity
+The source APK has pre-existing network permissions and `allowBackup="true"`. The vault adds no network permission/client and stores authentication state, encrypted files, and catalog under `Context.getNoBackupFilesDir()`. The original app's wider backup setting is left unchanged; backup/restore behavior still needs device testing.
 
-- Uploaded package size: **6,223,320 bytes**; ZIP integrity passed; **950 entries**.
-- Package: `com.google.android.calculator`.
-- Version name: **9.3 (978998587)**; version code: **85022647**.
-- Launcher activity: `com.android.calculator2.Calculator`.
-- Original DEX inventory: `classes.dex`, `classes2.dex`, `classes3.dex`; no native `lib/` directory.
-- Original app has existing network permissions and `allowBackup="true"`; the vault module adds no network permission and stores its files/auth state under `noBackupFilesDir`.
-- JADX emitted 12 non-blocking decompilation errors, but the relevant controller/activity code was available. APKTool decoded the manifest, resources, and original DEX files.
+## Hook and calculator behavior
 
-## Verified calculator hook and expression identity
+The calculator's equals button path reaches `amw.az()V`; the key-event path also routes equals to that method. On-screen numeric input is represented by raw expression tokens; localized display text is not suitable for identifying the trigger.
 
-The keypad/button handler `amw.av(View)` checks the equals resource ID and calls `amw.az()`. The calculator key-event path also calls `amw.az()` for `=` and Enter/DPAD-center. On-screen digit keys are inserted into the expression model by `amw.bi()`.
+The repack script inserts the hook at the start of `amw.az()V`, before calculation/history. It requires normal expression state (`ax == 1`), an empty edit buffer (`aM`), exactly one numeric `akt` token, and a PIN accepted by the configured Calculator credential. The configured trigger is compared using a Keystore-backed HMAC tag; `0000` is the fresh-install default. If matched, the existing clear path runs before the private vault activity is started. Other expressions proceed through the original equals path.
 
-The hook is inserted at the start of `amw.az()V`, before evaluation/history. It accepts only normal input state (`ax == 1`), empty edit buffer `aM`, exactly one numeric `akt` token, and raw token text `0000`. It does not compare localized display text. The existing clear/reset path runs before the vault activity starts, so the secret is not submitted to calculation/history. All nonmatching states continue through the original equals implementation.
-
-An inherent collision remains: mathematical `0000` is indistinguishable from the same literal used as a secret. The patch reserves `0000` for vault entry; the API 29 regression `0000+1` was confirmed to produce `1` without opening the vault.
+The reserved trigger necessarily collides with mathematical zero when the default is `0000`: the app cannot distinguish the literal's intent. The trigger is changeable from Vault settings. Current redesign regression tests for exact trigger, nonmatching expressions, locale handling, and calculator history are not run because no activity UI could be opened in this environment.
 
 ## Implemented vault design
 
-- PIN verifier: per-install random salt; PBKDF2-HMAC-SHA256 with 180,000 iterations; constant-time comparison; persistent throttling metadata; default PIN `0000` (weak and should be changed before use).
-- PIN changes affect the vault PIN, not the calculator trigger.
-- Files and catalog: AES-256-GCM with 96-bit IV and 128-bit tag. Android Keystore generates the randomized encryption IV; the IV is stored in the envelope. The key is non-exportable.
-- Imports use `ACTION_OPEN_DOCUMENT`; encrypted output is decrypted/authenticated before commit and before source deletion is offered. The user can keep the source; provider/system deletion is not guaranteed.
-- Catalog and vault files are app-private and excluded from Android backup. In-app previews use temporary private cache files with cleanup on close/activity destruction and stale-file cleanup on next launch.
-- Optional platform `BiometricPrompt` is shown after a valid PIN and offers continuation with the already-verified PIN. The app does not collect biometric data.
-- No network permission or network client was added by the vault module. The original Calculator's existing permissions remain.
+- **Independent PINs:** Calculator PIN opens the gate; the user chooses a separate 4–12 digit Vault PIN at first use. The credential layer and UI reject equal new values. Legacy single-PIN state migrates as the Vault PIN, preserving its old verifier; legacy users should change it to a value different from the default Calculator PIN.
+- **Credential handling:** separate random salts, PBKDF2-HMAC-SHA256 verifiers (180,000 iterations), constant-time comparison, and per-credential persisted failure/lockout state. Raw PINs are not written to the auth JSON. A Keystore HMAC tag enables efficient trigger comparison.
+- **Biometrics:** platform BiometricPrompt is shown as an alternative on the Vault PIN gate only. It does not satisfy the Calculator PIN gate and no biometric data is collected by the app.
+- **Encrypted storage:** AES-256-GCM file/catalog envelopes, 96-bit Keystore-generated IV, 128-bit authentication tag, non-exportable AES key.
+- **Safe import:** ACTION_OPEN_DOCUMENT copies into encrypted storage, then decrypts/authenticates the encrypted copy before committing and before offering deletion. Original removal requires an explicit choice and any applicable Android/provider consent; failure paths preserve the source.
+- **Organization and UI:** encrypted catalog folders, search across file names/MIME/folder, rename/move/empty-folder delete, and private image/text/video/PDF previews. Preview and import-verification plaintext is temporary cache content cleaned on normal close and next launch.
+- **Visual redesign:** native dark evergreen/mint palette, clear type hierarchy, concise auth screens, library/search/folder states, and settings. The Mobbin connector did not provide reference screens for this task; the UI is an original pattern-based implementation rather than a screenshot recreation.
 
-## Final build and runtime results
+## Build and static test results
 
-| Area | Result |
+| Area | Current result |
 |---|---|
-| Separate vault DEX, patched APK build | **PASS** — final `classes4.dex` present |
-| Local APK signature verification | **PASS** — RSA-3072 local signer; not Google's signing key |
-| Package metadata | **PASS** — package `com.google.android.calculator`, minSdk 29, targetSdk 37 |
-| Original upload preservation | **PASS** — exact SHA-256 match and byte comparison |
-| Install/launch | **PASS** — Android 10/API 29 software emulator |
-| Exact `0000` trigger | **PASS** — opens the private vault PIN gate after clearing the calculator formula |
-| Nonmatching `0000+1` | **PASS** — stays in Calculator and displays result `1` |
-| Wrong PIN/PIN change | **PASS** — wrong/old PIN remains locked; changed PIN `1234` unlocks; Settings accessible after a list-refresh defect was fixed |
-| Biometric success | **PASS (emulator)** — prompt appeared after correct PIN; enrolled virtual fingerprint opened the vault |
-| Encrypted import/preview | **PASS (small text fixture)** — `GVLT` file and encrypted catalog created; authenticated preview showed the original content; original fixture retained; cache empty after close |
+| Gradle vault module compilation | **PASS** — Gradle 8.7; JDK 21 emitted non-fatal Java 8 source/target warnings. |
+| Repack and local signing | **PASS** — separate APK created from the preserved original. |
+| APK signature | **PASS** — APK Signature Scheme v3, local RSA-3072 certificate. |
+| ZIP integrity | **PASS** — no archive errors. |
+| Manifest/DEX metadata | **PASS** — package/version/SDK fields, launcher, private VaultActivity, and `classes4.dex` present. |
+| Original package preservation | **PASS** — byte-identical SHA-256s as above. |
+| Emulator install | **PASS (install only)** — API 29 software AVD accepted APK. |
+| Activity launch / authentication / file flows | **BLOCKED / NOT RUN** — ActivityManager returned Error type 3 and PackageManager “No activity found” despite manifest declaration; a test-only package-ID variant behaved similarly. |
 
-A first import attempt exposed an Android Keystore IV policy error (`Caller-provided IV not permitted`). The final implementation lets Keystore generate the randomized IV and was rebuilt/retested successfully. An earlier list-refresh defect hid Settings; the final build preserves it and PIN changes were tested.
+Earlier single-PIN proof-of-concept runtime results are not evidence for the current redesign. See [`../implementation/TEST_PLAN.md`](../implementation/TEST_PLAN.md) for the current acceptance boundary and remaining test matrix.
 
-## Remaining validation and limitations
+## Known limits
 
-Only one API 29 software-emulated environment was used. Physical devices and other API levels remain untested. The following are not run: other arithmetic/locale cases, PIN lockout and restart persistence, biometric cancellation or unavailable hardware, large files, modified/truncated ciphertext, rename/category/delete operations, system/provider source-deletion consent or denial, Android backup inspection, and forced-process-death recovery. The source-deletion prompt was answered **Keep original** in the smoke test.
-
-This evidence supports a successful build and limited functional smoke tests, not a security certification. The default four-digit PIN is weak; Android Keystore/app-level controls are not protection against a compromised/rooted OS or code injection; lost app data/Keystore keys can make ciphertext unrecoverable. Review `implementation/TEST_PLAN.md` for the full matrix and acceptance boundary.
-
-## Preserved files
-
-- Untouched upload: `/home/ubuntu/upload/com.google.android.calculator_9.3.zip`.
-- Byte-identical working copy: `/home/ubuntu/work/calculator-vault/original-calculator-9.3.apk`.
-- Final APK: `/home/ubuntu/work/calculator-vault/implementation/build/CalculatorVault.apk`.
-- Source project: `/home/ubuntu/work/calculator-vault/implementation/`.
+This is not an audit or release certification. Physical devices, additional API levels, PIN lockout/restart persistence, biometric cancel/unavailable paths, GCM tamper/truncation, large files, SAF deletion consent/denial, backup restoration, preview crash recovery, and calculator edge cases remain unverified. A compromised/rooted operating system or lost Android Keystore key can expose or make vault data unrecoverable. The bundled decompilation is best-effort third-party code and is not Google's original source tree; review applicable rights before redistribution or reuse.

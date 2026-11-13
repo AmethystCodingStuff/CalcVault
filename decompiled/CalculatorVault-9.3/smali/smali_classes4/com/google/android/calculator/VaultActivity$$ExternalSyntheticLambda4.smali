@@ -3,7 +3,7 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/content/DialogInterface$OnClickListener;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
@@ -24,13 +24,13 @@
 
 
 # virtual methods
-.method public final onClick(Landroid/content/DialogInterface;I)V
-    .registers 4
+.method public final run()V
+    .registers 2
 
     .line 0
     iget-object v0, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda4;->f$0:Lcom/google/android/calculator/VaultActivity;
 
-    invoke-virtual {v0, p1, p2}, Lcom/google/android/calculator/VaultActivity;->lambda$showSettings$27$com-google-android-calculator-VaultActivity(Landroid/content/DialogInterface;I)V
+    invoke-virtual {v0}, Lcom/google/android/calculator/VaultActivity;->lambda$renameItem$41$com-google-android-calculator-VaultActivity()V
 
     return-void
 .end method

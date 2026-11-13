@@ -30,7 +30,7 @@
     .line 0
     iget-object v0, p0, Lcom/google/android/calculator/VaultActivity$Api28Biometrics$1$$ExternalSyntheticLambda1;->f$0:Lcom/google/android/calculator/VaultActivity;
 
-    invoke-static {v0}, Lcom/google/android/calculator/VaultActivity$Api28Biometrics$1;->lambda$onAuthenticationError$1(Lcom/google/android/calculator/VaultActivity;)V
+    invoke-static {v0}, Lcom/google/android/calculator/VaultActivity$Api28Biometrics$1;->lambda$onAuthenticationFailed$2(Lcom/google/android/calculator/VaultActivity;)V
 
     return-void
 .end method

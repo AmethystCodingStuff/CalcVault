@@ -39,12 +39,12 @@
     <string name="common_google_play_services_install_title">Install Google Play services</string>
     <string name="common_google_play_services_notification_channel_name">Google Play services availability</string>
     <string name="common_google_play_services_notification_ticker">Google Play services error</string>
-    <string name="common_google_play_services_signin_required_text">%1$s couldn\'t connect to Google Play services. Please sign in to your Google Account.</string>
+    <string name="common_google_play_services_signin_required_text">"%1$s couldn't connect to Google Play services. Please sign in to your Google Account."</string>
     <string name="common_google_play_services_signin_required_title">Sign-in required</string>
-    <string name="common_google_play_services_try_again_text">%1$s couldn\'t connect to Google Play services. Please try again.</string>
+    <string name="common_google_play_services_try_again_text">"%1$s couldn't connect to Google Play services. Please try again."</string>
     <string name="common_google_play_services_try_again_title">Please try again</string>
     <string name="common_google_play_services_unknown_issue">%1$s is having trouble with Google Play services. Please try again.</string>
-    <string name="common_google_play_services_unsupported_text">%1$s can\'t run because your device doesn\'t support Google Play services. Please use a supported device.</string>
+    <string name="common_google_play_services_unsupported_text">"%1$s can't run because your device doesn't support Google Play services. Please use a supported device."</string>
     <string name="common_google_play_services_unsupported_title">Device not compatible</string>
     <string name="common_google_play_services_update_button">Update</string>
     <string name="common_google_play_services_update_text">Update Google Play services to use %1$s.</string>
@@ -55,7 +55,7 @@
     <string name="common_open_on_phone">Open on phone</string>
     <string name="desc_clr">all clear</string>
     <string name="desc_comma">comma</string>
-    <string name="desc_const_e">Euler\'s number</string>
+    <string name="desc_const_e">"Euler's number"</string>
     <string name="desc_const_pi">pi</string>
     <string name="desc_del">Delete</string>
     <string name="desc_drag_handle_expand_display">Expand formula and result display</string>
@@ -108,7 +108,7 @@
     <string name="error_aborted">Aborted</string>
     <string name="error_nan">Undefined</string>
     <string name="error_syntax">Format error</string>
-    <string name="error_zero_divide">Can\'t divide by 0</string>
+    <string name="error_zero_divide">"Can't divide by 0"</string>
     <string name="expand">Show scientific buttons</string>
     <string name="item_view_role_description">Tab</string>
     <string name="m3_loading_indicator_content_description">Loading</string>
@@ -132,10 +132,10 @@
     <string name="privacy_promo">You can find the privacy policy here</string>
     <string name="sqrt_negative">Keep it real</string>
     <string name="text_copied_toast">Text copied</string>
-    <string name="timeout">Can\'t calculate</string>
+    <string name="timeout">"Can't calculate"</string>
     <string name="title_current_expression">Current expression</string>
-    <string name="title_incomplete_history">Can\'t access full history</string>
-    <string name="title_no_space">Can\'t save full history</string>
+    <string name="title_incomplete_history">"Can't access full history"</string>
+    <string name="title_no_space">"Can't save full history"</string>
     <string name="value_too_large">Value too large</string>
     <string name="zero_to_the_zeroth">0⁰ is ambiguous</string>
 </resources>

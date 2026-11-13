@@ -119,7 +119,7 @@
     <string name="menu_help">עזרה</string>
     <string name="menu_licenses">רישיונות קוד פתוח</string>
     <string name="menu_privacy">מדיניות הפרטיות</string>
-    <string name="msg_incomplete_history">ייתכן שניתן לראות רק את ההיסטוריה מהזמן האחרון. כדי לנסות לתקן את הבעיה, יש לעבור אל \'הגדרות\' ולנקות נתוני אפליקציה או אחסון באפליקציה.</string>
+    <string name="msg_incomplete_history">"ייתכן שניתן לראות רק את ההיסטוריה מהזמן האחרון. כדי לנסות לתקן את הבעיה, יש לעבור אל 'הגדרות' ולנקות נתוני אפליקציה או אחסון באפליקציה."</string>
     <string name="msg_no_space">אין מספיק מקום במכשיר זה כדי לשמור היסטוריה לטווח ארוך.</string>
     <string name="mtrl_button_snackbar_close_content_description">סגירה</string>
     <string name="mtrl_checkbox_state_description_checked">מסומנת</string>

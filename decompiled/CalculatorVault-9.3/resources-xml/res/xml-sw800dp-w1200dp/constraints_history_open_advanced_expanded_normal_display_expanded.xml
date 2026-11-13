@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ConstraintSet xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/history_open_advanced_expanded_normal_display_expanded"
-    app:deriveConstraintsFrom="@+id/history_open_advanced_expanded_normal">
-    <Constraint
-        android:orientation="vertical"
-        android:id="@+id/display_collapse_expand_button_divider"
-        app:layout_constraintGuide_percent="@fraction/display_expanded_collapse_expand_button_divider_screen_percent"/>
-    <Constraint
-        android:orientation="vertical"
-        android:id="@+id/collapse_expand_button_keypad_divider"
-        app:layout_constraintGuide_percent="@fraction/display_expanded_collapse_expand_button_keypad_divider_screen_percent"/>
+<ConstraintSet android:id="@id/history_open_advanced_expanded_normal_display_expanded" motion:deriveConstraintsFrom="@id/history_open_advanced_expanded_normal"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:motion="http://schemas.android.com/apk/res-auto">
+    <Constraint android:orientation="vertical" android:id="@id/display_collapse_expand_button_divider" motion:layout_constraintGuide_percent="@fraction/display_expanded_collapse_expand_button_divider_screen_percent" />
+    <Constraint android:orientation="vertical" android:id="@id/collapse_expand_button_keypad_divider" motion:layout_constraintGuide_percent="@fraction/display_expanded_collapse_expand_button_keypad_divider_screen_percent" />
 </ConstraintSet>

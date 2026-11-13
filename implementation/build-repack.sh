@@ -68,7 +68,7 @@ if not any(e.tag.endswith('activity') and e.get(ns+'name') == name for e in app)
         ns+'name': name,
         ns+'exported': 'false',
         ns+'excludeFromRecents': 'true',
-        ns+'theme': '@android:style/Theme.Material.Light.NoActionBar'
+        ns+'theme': '@android:style/Theme.Material.NoActionBar'
     })
 tree.write(manifest, encoding='utf-8', xml_declaration=True)
 PY

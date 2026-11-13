@@ -30,7 +30,7 @@
     .line 0
     iget-object v0, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda6;->f$0:Lcom/google/android/calculator/VaultActivity;
 
-    invoke-virtual {v0}, Lcom/google/android/calculator/VaultActivity;->lambda$preview$18$com-google-android-calculator-VaultActivity()V
+    invoke-virtual {v0}, Lcom/google/android/calculator/VaultActivity;->lambda$refreshFiles$15$com-google-android-calculator-VaultActivity()V
 
     return-void
 .end method

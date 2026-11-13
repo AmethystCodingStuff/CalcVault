@@ -1,0 +1,96 @@
+name: Android build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      original_apk_url:
+        description: HTTPS URL for a user-provided, compatible Calculator 9.3 APK (not stored in this repository)
+        required: false
+        type: string
+      original_apk_sha256:
+        description: Optional SHA-256 checksum for the supplied APK
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  compile-and-optionally-repack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle 8.7
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android platform and build-tools
+        run: |
+          yes | sdkmanager --licenses >/dev/null
+          sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Compile native vault module
+        run: gradle -p implementation --no-daemon :vault:assembleRelease copyBaksmaliRuntime
+
+      - name: Repack complete Calculator APK (manual dispatch only)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.original_apk_url != '' }}
+        env:
+          ORIGINAL_APK_URL: ${{ inputs.original_apk_url }}
+          ORIGINAL_APK_SHA256: ${{ inputs.original_apk_sha256 }}
+        run: |
+          set -euo pipefail
+          case "$ORIGINAL_APK_URL" in
+            https://*) ;;
+            *) echo "The original APK URL must use HTTPS." >&2; exit 2 ;;
+          esac
+
+          SOURCE_APK="$RUNNER_TEMP/original-calculator-9.3.apk"
+          curl --fail --location --retry 3 --proto '=https' --tlsv1.2 \
+            "$ORIGINAL_APK_URL" --output "$SOURCE_APK"
+
+          if [[ -n "$ORIGINAL_APK_SHA256" ]]; then
+            [[ "$ORIGINAL_APK_SHA256" =~ ^[A-Fa-f0-9]{64}$ ]] || {
+              echo "The optional SHA-256 input must contain exactly 64 hexadecimal characters." >&2
+              exit 2
+            }
+            printf '%s  %s\n' "$ORIGINAL_APK_SHA256" "$SOURCE_APK" | sha256sum --check --status
+          fi
+
+          APKTOOL_JAR="$RUNNER_TEMP/apktool.jar"
+          curl --fail --location --retry 3 --proto '=https' --tlsv1.2 \
+            "https://github.com/iBotPeaches/Apktool/releases/download/v3.0.3/apktool_3.0.3.jar" \
+            --output "$APKTOOL_JAR"
+          printf '%s  %s\n' \
+            'dbf930b076c6b9be08d57c449cacefc3bdd6b71ebd59b3066fc0e1f5b14f9423' \
+            "$APKTOOL_JAR" | sha256sum --check --status
+
+          mkdir -p artifacts
+          ANDROID_HOME="$ANDROID_HOME" \
+          APKTOOL_JAR="$APKTOOL_JAR" \
+          GRADLE_BIN="$(command -v gradle)" \
+            bash implementation/build-repack.sh "$SOURCE_APK" artifacts/CalculatorVault.apk
+
+      - name: Upload locally signed APK
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.original_apk_url != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: CalcVault-Android-${{ github.run_number }}
+          path: artifacts/CalculatorVault.apk
+          if-no-files-found: error
+          retention-days: 14

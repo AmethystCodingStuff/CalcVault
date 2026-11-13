@@ -7,17 +7,17 @@
 
 
 # instance fields
-.field public final synthetic f$0:Ljava/io/File;
+.field public final synthetic f$0:Lcom/google/android/calculator/VaultActivity;
 
 
 # direct methods
-.method public synthetic constructor <init>(Ljava/io/File;)V
+.method public synthetic constructor <init>(Lcom/google/android/calculator/VaultActivity;)V
     .registers 2
 
     .line 0
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    iput-object p1, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda25;->f$0:Ljava/io/File;
+    iput-object p1, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda25;->f$0:Lcom/google/android/calculator/VaultActivity;
 
     return-void
 .end method
@@ -28,9 +28,9 @@
     .registers 4
 
     .line 0
-    iget-object v0, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda25;->f$0:Ljava/io/File;
+    iget-object v0, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda25;->f$0:Lcom/google/android/calculator/VaultActivity;
 
-    invoke-static {v0, p1, p2}, Lcom/google/android/calculator/VaultActivity;->lambda$showPreviewDialog$20(Ljava/io/File;Landroid/content/DialogInterface;I)V
+    invoke-virtual {v0, p1, p2}, Lcom/google/android/calculator/VaultActivity;->lambda$showVerifiedImport$36$com-google-android-calculator-VaultActivity(Landroid/content/DialogInterface;I)V
 
     return-void
 .end method

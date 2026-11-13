@@ -9,23 +9,15 @@
 # instance fields
 .field public final synthetic f$0:Lcom/google/android/calculator/VaultActivity;
 
-.field public final synthetic f$1:Landroid/widget/EditText;
-
-.field public final synthetic f$2:Landroid/widget/Button;
-
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/google/android/calculator/VaultActivity;Landroid/widget/EditText;Landroid/widget/Button;)V
-    .registers 4
+.method public synthetic constructor <init>(Lcom/google/android/calculator/VaultActivity;)V
+    .registers 2
 
     .line 0
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     iput-object p1, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda12;->f$0:Lcom/google/android/calculator/VaultActivity;
-
-    iput-object p2, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda12;->f$1:Landroid/widget/EditText;
-
-    iput-object p3, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda12;->f$2:Landroid/widget/Button;
 
     return-void
 .end method
@@ -33,16 +25,12 @@
 
 # virtual methods
 .method public final onClick(Landroid/view/View;)V
-    .registers 5
+    .registers 3
 
     .line 0
     iget-object v0, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda12;->f$0:Lcom/google/android/calculator/VaultActivity;
 
-    iget-object v1, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda12;->f$1:Landroid/widget/EditText;
-
-    iget-object v2, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda12;->f$2:Landroid/widget/Button;
-
-    invoke-virtual {v0, v1, v2, p1}, Lcom/google/android/calculator/VaultActivity;->lambda$showPinGate$4$com-google-android-calculator-VaultActivity(Landroid/widget/EditText;Landroid/widget/Button;Landroid/view/View;)V
+    invoke-virtual {v0, p1}, Lcom/google/android/calculator/VaultActivity;->lambda$buildHome$13$com-google-android-calculator-VaultActivity(Landroid/view/View;)V
 
     return-void
 .end method

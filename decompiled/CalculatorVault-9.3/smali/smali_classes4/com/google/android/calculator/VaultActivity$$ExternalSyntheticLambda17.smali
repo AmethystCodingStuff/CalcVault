@@ -3,46 +3,34 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/view/View$OnClickListener;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
 .field public final synthetic f$0:Lcom/google/android/calculator/VaultActivity;
 
-.field public final synthetic f$1:Ljava/lang/String;
-
-.field public final synthetic f$2:Lorg/json/JSONObject;
-
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/google/android/calculator/VaultActivity;Ljava/lang/String;Lorg/json/JSONObject;)V
-    .registers 4
+.method public synthetic constructor <init>(Lcom/google/android/calculator/VaultActivity;)V
+    .registers 2
 
     .line 0
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     iput-object p1, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda17;->f$0:Lcom/google/android/calculator/VaultActivity;
 
-    iput-object p2, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda17;->f$1:Ljava/lang/String;
-
-    iput-object p3, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda17;->f$2:Lorg/json/JSONObject;
-
     return-void
 .end method
 
 
 # virtual methods
-.method public final onClick(Landroid/view/View;)V
-    .registers 5
+.method public final run()V
+    .registers 2
 
     .line 0
     iget-object v0, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda17;->f$0:Lcom/google/android/calculator/VaultActivity;
 
-    iget-object v1, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda17;->f$1:Ljava/lang/String;
-
-    iget-object v2, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda17;->f$2:Lorg/json/JSONObject;
-
-    invoke-virtual {v0, v1, v2, p1}, Lcom/google/android/calculator/VaultActivity;->lambda$refreshList$12$com-google-android-calculator-VaultActivity(Ljava/lang/String;Lorg/json/JSONObject;Landroid/view/View;)V
+    invoke-static {v0}, Lcom/google/android/calculator/VaultActivity;->$r8$lambda$KUP2VB2x06UrSw1FDp2vLzx-6Ug(Lcom/google/android/calculator/VaultActivity;)V
 
     return-void
 .end method

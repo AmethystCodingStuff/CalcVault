@@ -148,7 +148,7 @@
     .local v8, "tokenList":Ljava/lang/Object;
     instance-of v9, v8, Ljava/util/List;
 
-    if-eqz v9, :cond_e5
+    if-eqz v9, :cond_e8
 
     move-object v9, v8
 
@@ -160,7 +160,7 @@
 
     if-eq v9, v4, :cond_3e
 
-    goto/16 :goto_e5
+    goto/16 :goto_e8
 
     .line 30
     :cond_3e
@@ -212,18 +212,16 @@
 
     .line 33
     .local v10, "raw":Ljava/lang/String;
-    const-string v11, "0000"
-
-    invoke-virtual {v11, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-static {v10}, Lcom/google/android/calculator/PinManager;->validPin(Ljava/lang/String;)Z
 
     move-result v11
 
-    if-nez v11, :cond_6f
+    if-nez v11, :cond_6d
 
     return v3
 
     .line 36
-    :cond_6f
+    :cond_6d
     invoke-virtual/range {p0 .. p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v11
@@ -247,7 +245,7 @@
     .local v12, "pending":Ljava/lang/Object;
     instance-of v13, v12, Ljava/lang/String;
 
-    if-eqz v13, :cond_e3
+    if-eqz v13, :cond_e7
 
     move-object v13, v12
 
@@ -257,38 +255,68 @@
 
     move-result v13
 
-    if-nez v13, :cond_8e
+    if-nez v13, :cond_8c
 
-    goto :goto_e3
+    goto :goto_e7
 
-    .line 42
-    :cond_8e
+    .line 41
+    :cond_8c
     invoke-virtual/range {p0 .. p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v13
 
-    const-string v14, "aw"
+    new-array v14, v3, [Ljava/lang/Class;
 
-    new-array v15, v3, [Ljava/lang/Class;
-
-    invoke-virtual {v13, v14, v15}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+    invoke-virtual {v13, v2, v14}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v13
 
-    .line 43
-    .local v13, "clear":Ljava/lang/reflect/Method;
     new-array v14, v3, [Ljava/lang/Object;
 
     invoke-virtual {v13, v1, v14}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 44
+    move-result-object v13
+
+    check-cast v13, Landroid/content/Context;
+
+    .line 42
+    .local v13, "context":Landroid/content/Context;
+    invoke-static {v13, v10}, Lcom/google/android/calculator/PinManager;->calculatorPinMatches(Landroid/content/Context;Ljava/lang/String;)Z
+
+    move-result v14
+
+    if-nez v14, :cond_a5
+
+    return v3
+
+    .line 45
+    :cond_a5
+    invoke-virtual/range {p0 .. p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v14
+
+    const-string v15, "aw"
+
+    new-array v4, v3, [Ljava/lang/Class;
+
+    invoke-virtual {v14, v15, v4}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+
+    move-result-object v4
+
+    .line 46
+    .local v4, "clear":Ljava/lang/reflect/Method;
+    new-array v14, v3, [Ljava/lang/Object;
+
+    invoke-virtual {v4, v1, v14}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 47
     invoke-static/range {p0 .. p0}, Lcom/google/android/calculator/VaultHook;->currentExpression(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v14
 
-    .line 45
+    .line 48
     .local v14, "afterClear":Ljava/lang/Object;
-    if-eqz v14, :cond_e1
+    if-eqz v14, :cond_e6
 
     invoke-virtual {v14}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
@@ -308,180 +336,156 @@
 
     move-result v0
 
-    if-nez v0, :cond_ba
+    if-nez v0, :cond_d1
 
-    goto :goto_e1
+    goto :goto_e6
 
-    .line 49
-    :cond_ba
-    invoke-virtual/range {p0 .. p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+    .line 52
+    :cond_d1
+    new-instance v0, Landroid/content/Intent;
 
-    move-result-object v0
+    const-class v15, Lcom/google/android/calculator/VaultActivity;
 
-    new-array v15, v3, [Ljava/lang/Class;
+    invoke-direct {v0, v13, v15}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
 
-    invoke-virtual {v0, v2, v15}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+    .line 53
+    .local v0, "intent":Landroid/content/Intent;
+    instance-of v15, v13, Landroid/app/Activity;
 
-    move-result-object v0
-
-    new-array v15, v3, [Ljava/lang/Object;
-
-    invoke-virtual {v0, v1, v15}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Landroid/content/Context;
-
-    .line 50
-    .local v0, "context":Landroid/content/Context;
-    new-instance v15, Landroid/content/Intent;
-
-    const-class v3, Lcom/google/android/calculator/VaultActivity;
-
-    invoke-direct {v15, v0, v3}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
-
-    move-object v3, v15
-
-    .line 51
-    .local v3, "intent":Landroid/content/Intent;
-    instance-of v15, v0, Landroid/app/Activity;
-
-    if-nez v15, :cond_dd
+    if-nez v15, :cond_e1
 
     const/high16 v15, 0x10000000
 
-    invoke-virtual {v3, v15}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
+    invoke-virtual {v0, v15}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
-    .line 52
-    :cond_dd
-    invoke-virtual {v0, v3}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
-    :try_end_e0
-    .catchall {:try_start_b .. :try_end_e0} :catchall_e7
-
-    .line 53
-    return v4
-
-    .line 46
-    .end local v0    # "context":Landroid/content/Context;
-    .end local v3    # "intent":Landroid/content/Intent;
+    .line 54
     :cond_e1
-    :goto_e1
-    const/4 v2, 0x0
+    invoke-virtual {v13, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+    :try_end_e4
+    .catchall {:try_start_b .. :try_end_e4} :catchall_e9
+
+    .line 55
+    const/4 v2, 0x1
 
     return v2
+
+    .line 49
+    .end local v0    # "intent":Landroid/content/Intent;
+    :cond_e6
+    :goto_e6
+    return v3
 
     .line 39
-    .end local v13    # "clear":Ljava/lang/reflect/Method;
+    .end local v4    # "clear":Ljava/lang/reflect/Method;
+    .end local v13    # "context":Landroid/content/Context;
     .end local v14    # "afterClear":Ljava/lang/Object;
-    :cond_e3
-    :goto_e3
-    const/4 v2, 0x0
-
-    return v2
+    :cond_e7
+    :goto_e7
+    return v3
 
     .line 29
     .end local v9    # "token":Ljava/lang/Object;
     .end local v10    # "raw":Ljava/lang/String;
     .end local v11    # "pendingField":Ljava/lang/reflect/Field;
     .end local v12    # "pending":Ljava/lang/Object;
-    :cond_e5
-    :goto_e5
-    const/4 v2, 0x0
+    :cond_e8
+    :goto_e8
+    return v3
 
-    return v2
-
-    .line 54
+    .line 56
     .end local v5    # "stateField":Ljava/lang/reflect/Field;
     .end local v6    # "expression":Ljava/lang/Object;
     .end local v7    # "tokensField":Ljava/lang/reflect/Field;
     .end local v8    # "tokenList":Ljava/lang/Object;
-    :catchall_e7
+    :catchall_e9
     move-exception v0
 
-    move-object v3, v0
+    move-object v4, v0
 
-    .line 57
-    .local v3, "t":Ljava/lang/Throwable;
-    :try_start_e9
+    .line 59
+    .local v4, "t":Ljava/lang/Throwable;
+    :try_start_eb
     invoke-static/range {p0 .. p0}, Lcom/google/android/calculator/VaultHook;->currentExpression(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
 
-    .line 58
+    .line 60
     .local v0, "expression":Ljava/lang/Object;
-    invoke-static {v0}, Lcom/google/android/calculator/VaultHook;->isRawPin(Ljava/lang/Object;)Z
-
-    move-result v5
-
-    if-eqz v5, :cond_116
-
-    .line 59
     invoke-virtual/range {p0 .. p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v5
 
-    const/4 v6, 0x0
+    new-array v6, v3, [Ljava/lang/Class;
 
-    new-array v7, v6, [Ljava/lang/Class;
-
-    invoke-virtual {v5, v2, v7}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+    invoke-virtual {v5, v2, v6}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v2
 
-    new-array v5, v6, [Ljava/lang/Object;
+    new-array v5, v3, [Ljava/lang/Object;
 
     invoke-virtual {v2, v1, v5}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v2
 
-    .line 60
+    .line 61
     .local v2, "context":Ljava/lang/Object;
     instance-of v5, v2, Landroid/content/Context;
 
-    if-eqz v5, :cond_116
+    if-eqz v5, :cond_11b
 
-    .line 61
+    move-object v5, v2
+
+    check-cast v5, Landroid/content/Context;
+
+    invoke-static {v5, v0}, Lcom/google/android/calculator/VaultHook;->isConfiguredCalculatorPin(Landroid/content/Context;Ljava/lang/Object;)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_11b
+
+    .line 62
     move-object v5, v2
 
     check-cast v5, Landroid/content/Context;
 
     const-string v6, "Vault could not be opened; input was not accepted."
 
-    invoke-static {v5, v6, v4}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+    const/4 v7, 0x1
+
+    invoke-static {v5, v6, v7}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
 
     move-result-object v5
 
     invoke-virtual {v5}, Landroid/widget/Toast;->show()V
-    :try_end_114
-    .catchall {:try_start_e9 .. :try_end_114} :catchall_115
+    :try_end_119
+    .catchall {:try_start_eb .. :try_end_119} :catchall_11a
 
-    .line 62
-    return v4
+    .line 63
+    return v7
 
     .line 65
     .end local v0    # "expression":Ljava/lang/Object;
     .end local v2    # "context":Ljava/lang/Object;
-    :catchall_115
+    :catchall_11a
     move-exception v0
 
-    :cond_116
+    :cond_11b
     nop
 
     .line 66
-    const/4 v2, 0x0
-
-    return v2
+    return v3
 .end method
 
-.method private static isRawPin(Ljava/lang/Object;)Z
+.method private static isConfiguredCalculatorPin(Landroid/content/Context;Ljava/lang/Object;)Z
     .registers 8
-    .param p0, "expression"    # Ljava/lang/Object;
+    .param p0, "context"    # Landroid/content/Context;
+    .param p1, "expression"    # Ljava/lang/Object;
 
     .line 78
     const/4 v0, 0x0
 
     :try_start_1
-    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+    invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v1
 
@@ -491,7 +495,7 @@
 
     move-result-object v1
 
-    invoke-virtual {v1, p0}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-virtual {v1, p1}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
 
@@ -499,7 +503,7 @@
     .local v1, "list":Ljava/lang/Object;
     instance-of v2, v1, Ljava/util/List;
 
-    if-eqz v2, :cond_4f
+    if-eqz v2, :cond_54
 
     move-object v2, v1
 
@@ -513,7 +517,7 @@
 
     if-eq v2, v3, :cond_1e
 
-    goto :goto_4f
+    goto :goto_54
 
     .line 80
     :cond_1e
@@ -541,56 +545,62 @@
 
     move-result v4
 
-    if-eqz v4, :cond_4d
+    if-nez v4, :cond_36
 
-    const-string v4, "0000"
+    return v0
 
     .line 82
+    :cond_36
     invoke-virtual {v2}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
-    move-result-object v5
+    move-result-object v4
 
-    const-string v6, "a"
+    const-string v5, "a"
 
-    invoke-virtual {v5, v6}, Ljava/lang/Class;->getField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+    invoke-virtual {v4, v5}, Ljava/lang/Class;->getField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
-    move-result-object v5
+    move-result-object v4
 
-    invoke-virtual {v5, v2}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-virtual {v4, v2}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
-    move-result-object v5
+    move-result-object v4
 
-    invoke-virtual {v4, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    check-cast v4, Ljava/lang/String;
 
-    move-result v4
-    :try_end_49
-    .catchall {:try_start_1 .. :try_end_49} :catchall_50
+    .line 83
+    .local v4, "raw":Ljava/lang/String;
+    invoke-static {v4}, Lcom/google/android/calculator/PinManager;->validPin(Ljava/lang/String;)Z
 
-    if-eqz v4, :cond_4d
+    move-result v5
+
+    if-eqz v5, :cond_53
+
+    invoke-static {p0, v4}, Lcom/google/android/calculator/PinManager;->calculatorPinMatches(Landroid/content/Context;Ljava/lang/String;)Z
+
+    move-result v5
+    :try_end_50
+    .catchall {:try_start_1 .. :try_end_50} :catchall_55
+
+    if-eqz v5, :cond_53
 
     move v0, v3
 
-    goto :goto_4e
-
-    :cond_4d
-    nop
-
-    .line 81
-    :goto_4e
+    :cond_53
     return v0
 
     .line 79
     .end local v2    # "token":Ljava/lang/Object;
-    :cond_4f
-    :goto_4f
+    .end local v4    # "raw":Ljava/lang/String;
+    :cond_54
+    :goto_54
     return v0
 
-    .line 83
+    .line 84
     .end local v1    # "list":Ljava/lang/Object;
-    :catchall_50
+    :catchall_55
     move-exception v1
 
-    .line 84
+    .line 85
     .local v1, "ignored":Ljava/lang/Throwable;
     return v0
 .end method

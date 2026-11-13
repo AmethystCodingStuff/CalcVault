@@ -18,7 +18,7 @@
 .method private constructor <init>()V
     .registers 1
 
-    .line 254
+    .line 573
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -29,7 +29,7 @@
     .param p0, "activity"    # Landroid/app/Activity;
     .param p1, "uri"    # Landroid/net/Uri;
 
-    .line 256
+    .line 575
     const-string v0, "com.android.providers.media.documents"
 
     invoke-virtual {p1}, Landroid/net/Uri;->getAuthority()Ljava/lang/String;
@@ -44,13 +44,13 @@
 
     return-object p1
 
-    .line 257
+    .line 576
     :cond_d
     invoke-static {p0, p1}, Landroid/provider/MediaStore;->getMediaUri(Landroid/content/Context;Landroid/net/Uri;)Landroid/net/Uri;
 
     move-result-object v0
 
-    .line 258
+    .line 577
     .local v0, "mapped":Landroid/net/Uri;
     if-nez v0, :cond_15
 

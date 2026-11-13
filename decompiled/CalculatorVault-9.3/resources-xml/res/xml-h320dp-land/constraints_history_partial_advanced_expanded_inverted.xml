@@ -1,25 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ConstraintSet xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/history_partial_advanced_expanded_inverted"
-    app:deriveConstraintsFrom="@+id/history_closed_advanced_expanded_inverted">
-    <Constraint
-        android:orientation="horizontal"
-        android:id="@+id/history_top_guideline"
-        app:layout_constraintGuide_percent="@fraction/history_partial_history_top_screen_percent"/>
-    <Constraint
-        android:orientation="horizontal"
-        android:id="@+id/history_display_divider"
-        app:layout_constraintGuide_percent="@fraction/history_partial_history_display_divider_screen_percent"/>
-    <Constraint
-        android:orientation="horizontal"
-        android:id="@+id/display_collapse_expand_button_divider"
-        app:layout_constraintGuide_percent="@fraction/history_partial_display_collapse_expand_button_divider_screen_percent"/>
-    <Constraint
-        android:orientation="horizontal"
-        android:id="@+id/collapse_expand_button_keypad_divider"
-        app:layout_constraintGuide_percent="@fraction/history_partial_collapse_expand_button_keypad_divider_screen_percent"/>
-    <Constraint
-        android:orientation="vertical"
-        android:id="@+id/basic_bottom_guideline"
-        app:layout_constraintGuide_percent="@fraction/history_partial_basic_bottom_screen_percent"/>
+<ConstraintSet android:id="@id/history_partial_advanced_expanded_inverted" motion:deriveConstraintsFrom="@id/history_closed_advanced_expanded_inverted"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:motion="http://schemas.android.com/apk/res-auto">
+    <Constraint android:orientation="horizontal" android:id="@id/history_top_guideline" motion:layout_constraintGuide_percent="@fraction/history_partial_history_top_screen_percent" />
+    <Constraint android:orientation="horizontal" android:id="@id/history_display_divider" motion:layout_constraintGuide_percent="@fraction/history_partial_history_display_divider_screen_percent" />
+    <Constraint android:orientation="horizontal" android:id="@id/display_collapse_expand_button_divider" motion:layout_constraintGuide_percent="@fraction/history_partial_display_collapse_expand_button_divider_screen_percent" />
+    <Constraint android:orientation="horizontal" android:id="@id/collapse_expand_button_keypad_divider" motion:layout_constraintGuide_percent="@fraction/history_partial_collapse_expand_button_keypad_divider_screen_percent" />
+    <Constraint android:orientation="vertical" android:id="@id/basic_bottom_guideline" motion:layout_constraintGuide_percent="@fraction/history_partial_basic_bottom_screen_percent" />
 </ConstraintSet>

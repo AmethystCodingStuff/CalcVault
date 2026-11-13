@@ -120,7 +120,7 @@
     <string name="menu_licenses">ओपन सोर्स लाइसेंस</string>
     <string name="menu_privacy">निजता नीति</string>
     <string name="msg_incomplete_history">आप सिर्फ़ हाल ही का इतिहास देख सकते हैं. यह समस्या हल करने के लिए सेटिंग में जाकर ऐप्लिकेशन का डेटा या मेमोरी मिटाएं.</string>
-    <string name="msg_no_space">इस डिवाइस की मेमोरी में इतनी जगह नहीं है कि इस पर \'लंबे समय का इतिहास\' सेव किया जा सके.</string>
+    <string name="msg_no_space">"इस डिवाइस की मेमोरी में इतनी जगह नहीं है कि इस पर 'लंबे समय का इतिहास' सेव किया जा सके."</string>
     <string name="mtrl_button_snackbar_close_content_description">बंद करें</string>
     <string name="mtrl_checkbox_state_description_checked">सही का निशान लगाया गया</string>
     <string name="mtrl_checkbox_state_description_indeterminate">कुछ विकल्प चुने गए</string>

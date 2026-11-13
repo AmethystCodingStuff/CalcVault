@@ -3,28 +3,34 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/io/FilenameFilter;
+.implements Landroid/view/View$OnClickListener;
+
+
+# instance fields
+.field public final synthetic f$0:Lcom/google/android/calculator/VaultActivity;
 
 
 # direct methods
-.method public synthetic constructor <init>()V
-    .registers 1
+.method public synthetic constructor <init>(Lcom/google/android/calculator/VaultActivity;)V
+    .registers 2
 
     .line 0
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    iput-object p1, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda23;->f$0:Lcom/google/android/calculator/VaultActivity;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final accept(Ljava/io/File;Ljava/lang/String;)Z
+.method public final onClick(Landroid/view/View;)V
     .registers 3
 
     .line 0
-    invoke-static {p1, p2}, Lcom/google/android/calculator/VaultActivity;->lambda$cleanStalePreviewTemps$26(Ljava/io/File;Ljava/lang/String;)Z
+    iget-object v0, p0, Lcom/google/android/calculator/VaultActivity$$ExternalSyntheticLambda23;->f$0:Lcom/google/android/calculator/VaultActivity;
 
-    move-result p1
+    invoke-virtual {v0, p1}, Lcom/google/android/calculator/VaultActivity;->lambda$showMessage$3$com-google-android-calculator-VaultActivity(Landroid/view/View;)V
 
-    return p1
+    return-void
 .end method

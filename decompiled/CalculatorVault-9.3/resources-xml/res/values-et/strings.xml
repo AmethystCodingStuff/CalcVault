@@ -39,7 +39,7 @@
     <string name="common_google_play_services_install_title">Installige Google Play teenused</string>
     <string name="common_google_play_services_notification_channel_name">Google Play teenuste saadavalolek</string>
     <string name="common_google_play_services_notification_ticker">Viga Google Play teenustes</string>
-    <string name="common_google_play_services_signin_required_text">%1$s ei saanud Google Play teenustega ühendust luua. Logige oma Google\'i kontole sisse.</string>
+    <string name="common_google_play_services_signin_required_text">"%1$s ei saanud Google Play teenustega ühendust luua. Logige oma Google'i kontole sisse."</string>
     <string name="common_google_play_services_signin_required_title">Peate sisse logima</string>
     <string name="common_google_play_services_try_again_text">%1$s ei saanud Google Play teenustega ühendust luua. Proovige uuesti.</string>
     <string name="common_google_play_services_try_again_title">Proovige uuesti</string>

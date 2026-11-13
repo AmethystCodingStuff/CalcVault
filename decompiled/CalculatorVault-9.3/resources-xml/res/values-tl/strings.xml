@@ -55,7 +55,7 @@
     <string name="common_open_on_phone">Buksan sa telepono</string>
     <string name="desc_clr">i-clear lahat</string>
     <string name="desc_comma">kuwit</string>
-    <string name="desc_const_e">Euler\'s number</string>
+    <string name="desc_const_e">"Euler's number"</string>
     <string name="desc_const_pi">pi</string>
     <string name="desc_del">i-delete</string>
     <string name="desc_drag_handle_expand_display">Palawakin ang formula at resulta sa display</string>

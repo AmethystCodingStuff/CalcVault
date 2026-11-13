@@ -31,19 +31,23 @@
 
 .field public static final enum OK:Lcom/google/android/calculator/PinManager$Result;
 
+.field public static final enum SETUP_REQUIRED:Lcom/google/android/calculator/PinManager$Result;
+
 
 # direct methods
 .method private static synthetic $values()[Lcom/google/android/calculator/PinManager$Result;
-    .registers 3
+    .registers 4
 
-    .line 31
+    .line 41
     sget-object v0, Lcom/google/android/calculator/PinManager$Result;->OK:Lcom/google/android/calculator/PinManager$Result;
 
     sget-object v1, Lcom/google/android/calculator/PinManager$Result;->INVALID:Lcom/google/android/calculator/PinManager$Result;
 
     sget-object v2, Lcom/google/android/calculator/PinManager$Result;->LOCKED:Lcom/google/android/calculator/PinManager$Result;
 
-    filled-new-array {v0, v1, v2}, [Lcom/google/android/calculator/PinManager$Result;
+    sget-object v3, Lcom/google/android/calculator/PinManager$Result;->SETUP_REQUIRED:Lcom/google/android/calculator/PinManager$Result;
+
+    filled-new-array {v0, v1, v2, v3}, [Lcom/google/android/calculator/PinManager$Result;
 
     move-result-object v0
 
@@ -53,7 +57,7 @@
 .method static constructor <clinit>()V
     .registers 3
 
-    .line 31
+    .line 41
     new-instance v0, Lcom/google/android/calculator/PinManager$Result;
 
     const-string v1, "OK"
@@ -84,6 +88,16 @@
 
     sput-object v0, Lcom/google/android/calculator/PinManager$Result;->LOCKED:Lcom/google/android/calculator/PinManager$Result;
 
+    new-instance v0, Lcom/google/android/calculator/PinManager$Result;
+
+    const-string v1, "SETUP_REQUIRED"
+
+    const/4 v2, 0x3
+
+    invoke-direct {v0, v1, v2}, Lcom/google/android/calculator/PinManager$Result;-><init>(Ljava/lang/String;I)V
+
+    sput-object v0, Lcom/google/android/calculator/PinManager$Result;->SETUP_REQUIRED:Lcom/google/android/calculator/PinManager$Result;
+
     invoke-static {}, Lcom/google/android/calculator/PinManager$Result;->$values()[Lcom/google/android/calculator/PinManager$Result;
 
     move-result-object v0
@@ -112,7 +126,7 @@
         }
     .end annotation
 
-    .line 31
+    .line 41
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -130,7 +144,7 @@
         }
     .end annotation
 
-    .line 31
+    .line 41
     const-class v0, Lcom/google/android/calculator/PinManager$Result;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -145,7 +159,7 @@
 .method public static values()[Lcom/google/android/calculator/PinManager$Result;
     .registers 1
 
-    .line 31
+    .line 41
     sget-object v0, Lcom/google/android/calculator/PinManager$Result;->$VALUES:[Lcom/google/android/calculator/PinManager$Result;
 
     invoke-virtual {v0}, [Lcom/google/android/calculator/PinManager$Result;->clone()Ljava/lang/Object;

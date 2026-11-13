@@ -55,7 +55,7 @@
     <string name="common_open_on_phone">ဖုန်းပေါ်မှာ ဖွင့်ပါ</string>
     <string name="desc_clr">အားလုံး ဖယ်ရှားရန်</string>
     <string name="desc_comma">ကော်မာ</string>
-    <string name="desc_const_e">Euler\'s ဂဏန်း</string>
+    <string name="desc_const_e">"Euler's ဂဏန်း"</string>
     <string name="desc_const_pi">ပိုင်</string>
     <string name="desc_del">ဖျက်ရန်</string>
     <string name="desc_drag_handle_expand_display">ဖော်မြူလာနှင့် ရလဒ်ပြကွက်ကို ချဲ့ရန်</string>
@@ -119,7 +119,7 @@
     <string name="menu_help">အကူအညီ</string>
     <string name="menu_licenses">အခမဲ့ ရင်းမြစ် လိုင်စင်များ</string>
     <string name="menu_privacy">ကိုယ်ရေးအချက်အလက်လုံခြုံမှုဆိုင်ရာ မူဝါဒ</string>
-    <string name="msg_incomplete_history">သင်သည် လတ်တလော မှတ်တမ်းကိုသာ မြင်ရနိုင်သည်။ ပြဿနာကို ဖြေရှင်းကြည့်ရန် \'ဆက်တင်များ\' သို့ သွားပြီး အက်ပ်ဒေတာ သို့မဟုတ် အက်ပ်သိုလှောင်ခန်းကို ရှင်းထုတ်ပါ။</string>
+    <string name="msg_incomplete_history">"သင်သည် လတ်တလော မှတ်တမ်းကိုသာ မြင်ရနိုင်သည်။ ပြဿနာကို ဖြေရှင်းကြည့်ရန် 'ဆက်တင်များ' သို့ သွားပြီး အက်ပ်ဒေတာ သို့မဟုတ် အက်ပ်သိုလှောင်ခန်းကို ရှင်းထုတ်ပါ။"</string>
     <string name="msg_no_space">ရေရှည်မှတ်တမ်းကို သိမ်းရန် ဤစက်ပစ္စည်းပေါ်တွင် နေရာ မလုံလောက်ပါ။</string>
     <string name="mtrl_button_snackbar_close_content_description">ပိတ်ရန်</string>
     <string name="mtrl_checkbox_state_description_checked">အမှန်ခြစ်ထားသည်</string>

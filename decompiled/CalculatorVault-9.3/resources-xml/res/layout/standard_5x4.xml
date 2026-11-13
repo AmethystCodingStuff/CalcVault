@@ -1,292 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/standard_5_4_keypad"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/standard_5_4_keypad_row_0"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/vertical_boundary_button_margin"
-            android:layout_marginBottom="@dimen/vertical_button_margin"
-            app:layout_constraintBottom_toTopOf="@+id/standard_5_4_keypad_row_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread_inside">
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/digit_7"
-                android:src="@drawable/glyph_digit_7"
-                android:contentDescription="@string/digit_7"
-                android:layout_marginStart="@dimen/horizontal_boundary_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/digit_8"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Standard"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/digit_8"
-                android:src="@drawable/glyph_digit_8"
-                android:contentDescription="@string/digit_8"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/digit_9"
-                app:layout_constraintStart_toEndOf="@+id/digit_7"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Standard"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/digit_9"
-                android:src="@drawable/glyph_digit_9"
-                android:contentDescription="@string/digit_9"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/clr"
-                app:layout_constraintStart_toEndOf="@+id/digit_8"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Standard"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/clr"
-                android:src="@drawable/glyph_clr"
-                android:contentDescription="@string/desc_clr"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/op_mul"
-                app:layout_constraintStart_toEndOf="@+id/digit_9"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Clear"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/op_mul"
-                android:src="@drawable/glyph_op_mul"
-                android:contentDescription="@string/desc_op_mul"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_boundary_button_margin"
-                app:imageScalePercent="0.94"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/clr"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Operator"/>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@id/standard_5_4_keypad" android:layout_width="0.0dp" android:layout_height="0.0dp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout android:id="@id/standard_5_4_keypad_row_0" android:layout_width="0.0dp" android:layout_height="0.0dp" android:layout_marginTop="@dimen/vertical_boundary_button_margin" android:layout_marginBottom="@dimen/vertical_button_margin" app:layout_constraintBottom_toTopOf="@id/standard_5_4_keypad_row_1" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_chainStyle="spread_inside">
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/digit_7" android:src="@drawable/glyph_digit_7" android:contentDescription="@string/digit_7" android:layout_marginStart="@dimen/horizontal_boundary_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/digit_8" app:layout_constraintHorizontal_chainStyle="spread_inside" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Standard" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/digit_8" android:src="@drawable/glyph_digit_8" android:contentDescription="@string/digit_8" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/digit_9" app:layout_constraintStart_toEndOf="@id/digit_7" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Standard" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/digit_9" android:src="@drawable/glyph_digit_9" android:contentDescription="@string/digit_9" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/clr" app:layout_constraintStart_toEndOf="@id/digit_8" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Standard" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/clr" android:src="@drawable/glyph_clr" android:contentDescription="@string/desc_clr" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/op_mul" app:layout_constraintStart_toEndOf="@id/digit_9" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Clear" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/op_mul" android:src="@drawable/glyph_op_mul" android:contentDescription="@string/desc_op_mul" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_boundary_button_margin" app:imageScalePercent="0.94" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@id/clr" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Operator" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:orientation="horizontal"
-            android:id="@+id/standard_5_4_keypad_row_1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/vertical_button_margin"
-            android:layout_marginBottom="@dimen/vertical_button_margin"
-            app:layout_constraintBottom_toTopOf="@+id/standard_5_4_keypad_row_2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/standard_5_4_keypad_row_0">
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/digit_4"
-                android:src="@drawable/glyph_digit_4"
-                android:contentDescription="@string/digit_4"
-                android:layout_marginStart="@dimen/horizontal_boundary_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/digit_5"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Standard"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/digit_5"
-                android:src="@drawable/glyph_digit_5"
-                android:contentDescription="@string/digit_5"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/digit_6"
-                app:layout_constraintStart_toEndOf="@+id/digit_4"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Standard"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/digit_6"
-                android:src="@drawable/glyph_digit_6"
-                android:contentDescription="@string/digit_6"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/parens"
-                app:layout_constraintStart_toEndOf="@+id/digit_5"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Standard"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/parens"
-                android:src="@drawable/glyph_parens"
-                android:contentDescription="@string/desc_parens"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:imageScalePercent="0.78"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/op_sub"
-                app:layout_constraintStart_toEndOf="@+id/digit_6"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Operator"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/op_sub"
-                android:src="@drawable/glyph_op_sub"
-                android:contentDescription="@string/desc_op_sub"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_boundary_button_margin"
-                app:imageScalePercent="0.99"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/parens"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Operator"/>
+        <androidx.constraintlayout.widget.ConstraintLayout android:orientation="horizontal" android:id="@id/standard_5_4_keypad_row_1" android:layout_width="0.0dp" android:layout_height="0.0dp" android:layout_marginTop="@dimen/vertical_button_margin" android:layout_marginBottom="@dimen/vertical_button_margin" app:layout_constraintBottom_toTopOf="@id/standard_5_4_keypad_row_2" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/standard_5_4_keypad_row_0">
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/digit_4" android:src="@drawable/glyph_digit_4" android:contentDescription="@string/digit_4" android:layout_marginStart="@dimen/horizontal_boundary_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/digit_5" app:layout_constraintHorizontal_chainStyle="spread_inside" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Standard" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/digit_5" android:src="@drawable/glyph_digit_5" android:contentDescription="@string/digit_5" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/digit_6" app:layout_constraintStart_toEndOf="@id/digit_4" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Standard" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/digit_6" android:src="@drawable/glyph_digit_6" android:contentDescription="@string/digit_6" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/parens" app:layout_constraintStart_toEndOf="@id/digit_5" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Standard" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/parens" android:src="@drawable/glyph_parens" android:contentDescription="@string/desc_parens" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:imageScalePercent="0.78" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/op_sub" app:layout_constraintStart_toEndOf="@id/digit_6" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Operator" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/op_sub" android:src="@drawable/glyph_op_sub" android:contentDescription="@string/desc_op_sub" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_boundary_button_margin" app:imageScalePercent="0.99" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@id/parens" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Operator" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:orientation="horizontal"
-            android:id="@+id/standard_5_4_keypad_row_2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/vertical_button_margin"
-            android:layout_marginBottom="@dimen/vertical_button_margin"
-            app:layout_constraintBottom_toTopOf="@+id/standard_5_4_keypad_row_3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/standard_5_4_keypad_row_1">
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/digit_1"
-                android:src="@drawable/glyph_digit_1"
-                android:contentDescription="@string/digit_1"
-                android:layout_marginStart="@dimen/horizontal_boundary_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/digit_2"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Standard"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/digit_2"
-                android:src="@drawable/glyph_digit_2"
-                android:contentDescription="@string/digit_2"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/digit_3"
-                app:layout_constraintStart_toEndOf="@+id/digit_1"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Standard"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/digit_3"
-                android:src="@drawable/glyph_digit_3"
-                android:contentDescription="@string/digit_3"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/op_pct"
-                app:layout_constraintStart_toEndOf="@+id/digit_2"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Standard"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/op_pct"
-                android:src="@drawable/glyph_op_pct"
-                android:contentDescription="@string/desc_op_pct"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/op_add"
-                app:layout_constraintStart_toEndOf="@+id/digit_3"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Operator"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/op_add"
-                android:src="@drawable/glyph_op_add"
-                android:contentDescription="@string/desc_op_add"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_boundary_button_margin"
-                app:imageScalePercent="0.94"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/op_pct"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Operator"/>
+        <androidx.constraintlayout.widget.ConstraintLayout android:orientation="horizontal" android:id="@id/standard_5_4_keypad_row_2" android:layout_width="0.0dp" android:layout_height="0.0dp" android:layout_marginTop="@dimen/vertical_button_margin" android:layout_marginBottom="@dimen/vertical_button_margin" app:layout_constraintBottom_toTopOf="@id/standard_5_4_keypad_row_3" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/standard_5_4_keypad_row_1">
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/digit_1" android:src="@drawable/glyph_digit_1" android:contentDescription="@string/digit_1" android:layout_marginStart="@dimen/horizontal_boundary_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/digit_2" app:layout_constraintHorizontal_chainStyle="spread_inside" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Standard" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/digit_2" android:src="@drawable/glyph_digit_2" android:contentDescription="@string/digit_2" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/digit_3" app:layout_constraintStart_toEndOf="@id/digit_1" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Standard" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/digit_3" android:src="@drawable/glyph_digit_3" android:contentDescription="@string/digit_3" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/op_pct" app:layout_constraintStart_toEndOf="@id/digit_2" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Standard" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/op_pct" android:src="@drawable/glyph_op_pct" android:contentDescription="@string/desc_op_pct" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/op_add" app:layout_constraintStart_toEndOf="@id/digit_3" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Operator" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/op_add" android:src="@drawable/glyph_op_add" android:contentDescription="@string/desc_op_add" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_boundary_button_margin" app:imageScalePercent="0.94" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@id/op_pct" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Operator" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:orientation="horizontal"
-            android:id="@+id/standard_5_4_keypad_row_3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/vertical_button_margin"
-            android:layout_marginBottom="@dimen/vertical_button_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/standard_5_4_keypad_row_2">
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/digit_0"
-                android:src="@drawable/glyph_digit_0"
-                android:contentDescription="@string/digit_0"
-                android:layout_marginStart="@dimen/horizontal_boundary_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/dec_point"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Standard"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/dec_point"
-                android:src="@drawable/glyph_point"
-                android:contentDescription="@string/desc_point"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:imageScalePercent="0.9"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/del"
-                app:layout_constraintStart_toEndOf="@+id/digit_0"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Standard"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/del"
-                android:src="@drawable/glyph_del"
-                android:contentDescription="@string/desc_del"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:imageScalePercent="0.85"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/op_div"
-                app:layout_constraintStart_toEndOf="@+id/dec_point"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Standard"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/op_div"
-                android:src="@drawable/glyph_op_div"
-                android:contentDescription="@string/desc_op_div"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_button_margin"
-                app:imageScalePercent="0.97"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/eq"
-                app:layout_constraintStart_toEndOf="@+id/del"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Operator"/>
-            <com.android.calculator2.common.view.padbutton.PadImageButton
-                android:id="@+id/eq"
-                android:src="@drawable/glyph_eq"
-                android:contentDescription="@string/desc_eq"
-                android:layout_marginStart="@dimen/horizontal_button_margin"
-                android:layout_marginEnd="@dimen/horizontal_boundary_button_margin"
-                app:imageScalePercent="0.8"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/op_div"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/KeypadButtonStyle.Equals"/>
+        <androidx.constraintlayout.widget.ConstraintLayout android:orientation="horizontal" android:id="@id/standard_5_4_keypad_row_3" android:layout_width="0.0dp" android:layout_height="0.0dp" android:layout_marginTop="@dimen/vertical_button_margin" android:layout_marginBottom="@dimen/vertical_button_margin" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/standard_5_4_keypad_row_2">
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/digit_0" android:src="@drawable/glyph_digit_0" android:contentDescription="@string/digit_0" android:layout_marginStart="@dimen/horizontal_boundary_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/dec_point" app:layout_constraintHorizontal_chainStyle="spread_inside" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Standard" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/dec_point" android:src="@drawable/glyph_point" android:contentDescription="@string/desc_point" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:imageScalePercent="0.9" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/del" app:layout_constraintStart_toEndOf="@id/digit_0" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Standard" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/del" android:src="@drawable/glyph_del" android:contentDescription="@string/desc_del" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:imageScalePercent="0.85" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/op_div" app:layout_constraintStart_toEndOf="@id/dec_point" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Standard" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/op_div" android:src="@drawable/glyph_op_div" android:contentDescription="@string/desc_op_div" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_button_margin" app:imageScalePercent="0.97" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/eq" app:layout_constraintStart_toEndOf="@id/del" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Operator" />
+            <com.android.calculator2.common.view.padbutton.PadImageButton android:id="@id/eq" android:src="@drawable/glyph_eq" android:contentDescription="@string/desc_eq" android:layout_marginStart="@dimen/horizontal_button_margin" android:layout_marginEnd="@dimen/horizontal_boundary_button_margin" app:imageScalePercent="0.8" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@id/op_div" app:layout_constraintTop_toTopOf="parent" style="@style/KeypadButtonStyle.Equals" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </merge>

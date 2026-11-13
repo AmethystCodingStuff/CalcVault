@@ -18,7 +18,7 @@
 .method private constructor <init>()V
     .registers 1
 
-    .line 280
+    .line 599
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -34,12 +34,12 @@
         }
     .end annotation
 
-    .line 282
+    .line 601
     invoke-static {p0, p1}, Lcom/google/android/calculator/VaultActivity$Api29MediaUri;->map(Landroid/app/Activity;Landroid/net/Uri;)Landroid/net/Uri;
 
     move-result-object v0
 
-    .line 283
+    .line 602
     .local v0, "target":Landroid/net/Uri;
     const-string v1, "media"
 
@@ -57,7 +57,7 @@
 
     return v1
 
-    .line 284
+    .line 603
     :cond_12
     invoke-virtual {p0}, Lcom/google/android/calculator/VaultActivity;->getContentResolver()Landroid/content/ContentResolver;
 
@@ -71,12 +71,12 @@
 
     move-result-object v1
 
-    .line 285
+    .line 604
     .local v1, "request":Landroid/app/PendingIntent;
     # setter for: Lcom/google/android/calculator/VaultActivity;->pendingDelete:Landroid/net/Uri;
-    invoke-static {p0, p1}, Lcom/google/android/calculator/VaultActivity;->access$102(Lcom/google/android/calculator/VaultActivity;Landroid/net/Uri;)Landroid/net/Uri;
+    invoke-static {p0, p1}, Lcom/google/android/calculator/VaultActivity;->access$502(Lcom/google/android/calculator/VaultActivity;Landroid/net/Uri;)Landroid/net/Uri;
 
-    .line 286
+    .line 605
     invoke-virtual {v1}, Landroid/app/PendingIntent;->getIntentSender()Landroid/content/IntentSender;
 
     move-result-object v3
@@ -95,7 +95,7 @@
 
     invoke-virtual/range {v2 .. v8}, Lcom/google/android/calculator/VaultActivity;->startIntentSenderForResult(Landroid/content/IntentSender;ILandroid/content/Intent;III)V
 
-    .line 287
+    .line 606
     const/4 v2, 0x1
 
     return v2

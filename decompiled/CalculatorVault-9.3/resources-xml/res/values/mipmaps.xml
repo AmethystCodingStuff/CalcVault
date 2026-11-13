@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <mipmap name="launcher_calculator_banner">@android:color/transparent</mipmap>
+</resources>

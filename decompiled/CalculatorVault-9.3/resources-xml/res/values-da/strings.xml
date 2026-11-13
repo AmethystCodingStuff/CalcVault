@@ -65,7 +65,7 @@
     <string name="desc_eq">lig med</string>
     <string name="desc_final_result_long_click_action_hint">vis handlingsvinduet</string>
     <string name="desc_formula">Ingen formel</string>
-    <string name="desc_fun_10pow">10 i n\'te potens</string>
+    <string name="desc_fun_10pow">"10 i n'te potens"</string>
     <string name="desc_fun_arccos">invers cosinus</string>
     <string name="desc_fun_arcsin">invers sinus</string>
     <string name="desc_fun_arctan">invers tangens</string>

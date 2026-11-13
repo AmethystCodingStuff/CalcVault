@@ -9,7 +9,7 @@
     <fraction name="history_open_history_display_divider_screen_percent">0.7</fraction>
     <fraction name="history_partial_basic_bottom_screen_percent">1.72</fraction>
     <fraction name="history_partial_collapse_expand_button_keypad_divider_screen_percent">1.19</fraction>
-    <fraction name="history_partial_display_collapse_expand_button_divider_screen_percent">1</fraction>
+    <fraction name="history_partial_display_collapse_expand_button_divider_screen_percent">1.0</fraction>
     <fraction name="history_partial_history_display_divider_screen_percent">0.46</fraction>
     <fraction name="history_top_screen_percent">-0.14</fraction>
     <fraction name="toolbar_bottom_screen_percent">0.16</fraction>

@@ -1,36 +1,35 @@
-# Runtime verification plan and results
+# CalcVault redesign build — verification record
 
-The final locally signed APK was rebuilt after runtime findings and tested on one software-emulated Android 10/API 29 x86_64 device. These are smoke/functional tests, not a security audit or release certification. Authentication tests were performed on the Settings-fixed build; the final AES-GCM follow-up build was reinstalled and rechecked for trigger, biometric success, encrypted import, preview, and calculator regression.
+**Run date:** 2026-11-13. **Artifact:** `../artifacts/CalculatorVault.apk`. **SHA-256:** `f4628b36db769982155d2073818f883d1887f3397953549a90af08a9c5264221`.
 
-| Test | Result | Evidence / limits |
+This record applies to the redesigned two-PIN source and APK. Smoke tests from an earlier single-PIN proof of concept are historical only and do not validate the current implementation.
+
+| Check | Current result | Evidence / limits |
 |---|---|---|
-| Build separate vault DEX and patched APK | **PASS** | Final APK rebuilt; added `classes4.dex` is present. |
-| APK signature verification | **PASS** | `apksigner verify --verbose --print-certs` passed; locally generated RSA-3072 signer, not Google. |
-| Static package inspection | **PASS** | Package `com.google.android.calculator`; minSdk 29; targetSdk 37; private vault activity and hook DEX present. |
-| Original upload preserved | **PASS** | Uploaded ZIP and APK-named working copy both SHA-256 `ec133658e784bd90ca6de698be3be85041fe5c1c3c1ce12dc4ddf7b6ae22ad3a`; `cmp` identical. |
-| Install and launch on Android | **PASS** | Installed and launched on Android 10/API 29 software emulator. No physical-device installation tested. |
-| Exact keypad `0000` then equals | **PASS** | Opened the non-exported vault activity and PIN gate; calculator expression was cleared first. |
-| Nonmatching `0000+1` | **PASS** | Final-build regression: Calculator stayed foreground and displayed result `1`; vault did not open. |
-| Wrong PIN | **PASS** | Wrong PIN left the gate closed. After PIN change, prior PIN `0000` was rejected. |
-| PIN change | **PASS** | Changed vault PIN from `0000` to `1234`; old PIN rejected and new PIN unlocked the vault. Settings remained visible after the list-refresh fix. |
-| Biometric preference / BiometricPrompt | **PASS (emulator path)** | Preference persisted; prompt appeared after correct PIN; enrolled virtual fingerprint opened the vault. Physical biometric hardware, cancellation, and unavailable-sensor flows not tested. |
-| Small text import with AES-GCM | **PASS** | A 42-byte emulator-only fixture produced a `GVLT` encrypted file and encrypted catalog; import authenticated by decrypting before commit. The original was kept. |
-| Decrypted preview | **PASS** | Preview displayed the fixture content; after Close, cache contained no decrypted preview or verification temp. |
-| Plaintext absent from encrypted files | **PASS (fixture check)** | Searched the produced `.gvl` envelopes for the fixture payload; no match. This is a smoke check, not cryptographic analysis. |
-| Source deletion consent | **NOT RUN** | Chose **Keep original**; original fixture remained present. Android 10/11+ deletion consent and provider denial were not exercised. |
-| Other expressions / locales | **NOT RUN** | `1+0000`, `-0000`, decimal, scientific mode, and locale-specific rendering not tested. |
-| PIN lockout / persistence across restart | **NOT RUN** | Throttling implementation exists; lockout and process/device restart behavior were not exercised. |
-| GCM tamper/truncation | **NOT RUN** | Authentication failure for modified ciphertext not tested. |
-| Rename/category/delete vault copy | **NOT RUN** | Catalog editing and encrypted-copy deletion not tested. |
-| Large files / other preview formats | **NOT RUN** | Only a small text file was imported and previewed. |
-| Backup and process-death recovery | **NOT RUN** | Backup exclusion and stale-cache cleanup after forced process death not validated end-to-end. |
+| Compile native vault module | **PASS** | Gradle 8.7 `:vault:assembleRelease` completed. Java 8 source/target warnings under JDK 21 and a deprecation note are non-fatal. |
+| Repack APK from preserved input | **PASS** | `build-repack.sh` completed against the byte-identical original package copy and produced a separate APK. |
+| APK signature | **PASS** | `apksigner verify` passed for v3; one local RSA-3072 signer. It is not signed by Google. |
+| APK ZIP integrity | **PASS** | `unzip -t` reported no errors. |
+| Package/DEX inspection | **PASS** | Package `com.google.android.calculator`, version 9.3, minSdk 29, targetSdk 37; launcher and private VaultActivity are in the manifest; `classes4.dex` is present. |
+| Original source package preserved | **PASS** | Uploaded ZIP and APK-named working copy both SHA-256 `ec133658e784bd90ca6de698be3be85041fe5c1c3c1ce12dc4ddf7b6ae22ad3a` and compare byte-for-byte. |
+| Install using production package ID | **BLOCKED (expected)** | `adb install -r` returned `INSTALL_FAILED_UPDATE_INCOMPATIBLE` because the emulator already has the Google-signed package. The installed app was not uninstalled or modified. |
+| Install disposable package-ID variant | **PASS (package install only)** | A temporary variant with a separate app ID and renamed app-owned custom permission installed successfully; it was used only to avoid the signature collision. The temporary package was removed after testing. |
+| API 29 emulator boot | **PASS (environment)** | x86_64 AVD booted using software acceleration because `/dev/kvm` is unavailable. This is not an app-flow result. |
+| Resolve/launch Calculator or VaultActivity | **BLOCKED** | PackageManager returned “No activity found”; explicit starts returned `Error type 3` for both activities despite `aapt` and `dumpsys package` showing the launcher activity in the manifest/resolver table. Including stopped packages did not change the result. No activity UI was reached. |
+| Two-stage PIN flow / distinct-value rejection | **NOT RUN** | Source review confirms separate credential records, independent lockout fields, and duplicate-value checks in the credential layer; no current runtime test. |
+| Calculator PIN change and hook regression | **NOT RUN** | Exact configured PIN, nonmatching expressions, ordinary calculation/history behavior, locales, and calculator PIN change were not exercised on this build. |
+| Vault PIN setup/change and independent throttling | **NOT RUN** | PBKDF2-HMAC-SHA256, per-credential salts, and independent persisted counters exist; lockout/reset and restart behavior need runtime tests. |
+| Biometric fallback | **NOT RUN** | The UI presents BiometricPrompt only as a Vault PIN alternative; success/cancel/unavailable hardware flows were not reached. |
+| Import, GCM verification, safe source deletion | **NOT RUN** | Source inspection confirms decrypt/authenticate-before-commit and explicit post-verification delete consent; SAF/provider behavior was not exercised. |
+| Folder/search/rename/delete/preview | **NOT RUN** | Implemented in source; folder persistence, search, preview formats, and encrypted-copy operations need runtime tests. |
+| Backup exclusion | **SOURCE REVIEW PASS; DEVICE CHECK NOT RUN** | Auth state, encrypted files, and catalog use `getNoBackupFilesDir()`; backup/restore was not tested on device. |
 
-## Findings fixed during validation
+## Runtime blocker detail
 
-The first runtime pass showed that the list refresh removed the Settings button. The refresh now preserves the four fixed header controls, and Settings/PIN change was exercised successfully.
+The emulator itself reached Android 10/API 29. Because the official package ID was already occupied by a Google-signed Calculator, the production-ID install was not forced and that installed app was left untouched. A disposable package-ID build installed, but ActivityManager/PackageManager did not resolve its declared launcher or vault activities. A fresh package-ID variant and an explicit include-stopped launch produced the same result. This prevented all UI-level testing. The current record does not attribute the failure to authentication logic; it also does not establish that the application launches successfully.
 
-The first file-import pass showed that Android Keystore rejected a caller-supplied AES-GCM IV while randomized encryption was enforced. Encryption now lets Android Keystore generate the randomized IV and stores that IV in the envelope. The final build successfully imported and previewed the test file. Import verification-temp cleanup now covers all exception paths.
+## Security and acceptance boundary
 
-## Acceptance boundary
+The code uses distinct Calculator and Vault PIN records; first-use Vault PIN setup and PIN changes reject equality with the other credential. Legacy single-PIN data is preserved as the Vault PIN to avoid silently changing the existing gate; a legacy user should change it to a value different from the default Calculator PIN. Both auth metadata and vault contents are under no-backup storage. These are source-level observations, not a security audit.
 
-The final APK and the tested smoke paths are reproducible artifacts, but the remaining `NOT RUN` items mean this should not be represented as a fully audited or production-ready secure vault. Only one API 29 software-emulator environment was exercised.
+The APK is rebuilt and statically verified, but the redesign is **not functionally validated** until the emulator/package-resolution issue is fixed and the current two-stage, biometric, SAF, persistence, and calculator-regression tests are rerun. Do not describe it as production-ready or as a completed secure-vault release.

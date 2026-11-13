@@ -52,7 +52,7 @@
     <string name="common_google_play_services_updating_client_title">Google Play ਸੇਵਾਵਾਂ ਨੂੰ ਅੱਪਡੇਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
     <string name="common_google_play_services_updating_text">Google Play ਸੇਵਾਵਾਂ ਦਾ ਅੱਪਡੇਟ ਪੂਰਾ ਹੋਣ ਤੋਂ ਬਾਅਦ %1$s ਉਪਲਬਧ ਹੋਵੇਗੀ।</string>
     <string name="common_google_play_services_wear_update_text">%1$s ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ Google Play ਸੇਵਾਵਾਂ ਨੂੰ ਅੱਪਡੇਟ ਕਰੋ।</string>
-    <string name="common_open_on_phone">ਫ਼ੋਨ \'ਤੇ ਖੋਲ੍ਹੋ</string>
+    <string name="common_open_on_phone">"ਫ਼ੋਨ 'ਤੇ ਖੋਲ੍ਹੋ"</string>
     <string name="desc_clr">ਸਭ ਕਲੀਅਰ ਕਰੋ</string>
     <string name="desc_comma">ਕੌਮਾ</string>
     <string name="desc_const_e">Euler ਦੀ ਸੰਖਿਆ</string>
@@ -120,7 +120,7 @@
     <string name="menu_licenses">ਖੁੱਲ੍ਹਾ ਸਰੋਤ ਲਾਇਸੰਸ</string>
     <string name="menu_privacy">ਪਰਦੇਦਾਰੀ ਨੀਤੀ</string>
     <string name="msg_incomplete_history">ਤੁਸੀਂ ਸਿਰਫ਼ ਹਾਲੀਆ ਇਤਿਹਾਸ ਦੇਖ ਸਕਦੇ ਹੋ। ਇਸ ਸਮੱਸਿਆ ਨੂੰ ਠੀਕ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਜਾਕੇ ਐਪ ਡਾਟਾ ਜਾਂ ਐਪ ਸਟੋਰੇਜ ਕਲੀਅਰ ਕਰੋ।</string>
-    <string name="msg_no_space">ਲੰਮੇ ਸਮੇਂ ਦੇ ਇਤਿਹਾਸ ਨੂੰ ਰੱਖਿਅਤ ਕਰਨ ਲਈ ਇਸ ਡੀਵਾਈਸ \'ਤੇ ਲੋੜੀਂਦੀ ਜਗ੍ਹਾ ਨਹੀਂ ਹੈ।</string>
+    <string name="msg_no_space">"ਲੰਮੇ ਸਮੇਂ ਦੇ ਇਤਿਹਾਸ ਨੂੰ ਰੱਖਿਅਤ ਕਰਨ ਲਈ ਇਸ ਡੀਵਾਈਸ 'ਤੇ ਲੋੜੀਂਦੀ ਜਗ੍ਹਾ ਨਹੀਂ ਹੈ।"</string>
     <string name="mtrl_button_snackbar_close_content_description">ਬੰਦ ਕਰੋ</string>
     <string name="mtrl_checkbox_state_description_checked">ਸਹੀ ਦਾ ਨਿਸ਼ਾਨ ਲਾਇਆ ਗਿਆ</string>
     <string name="mtrl_checkbox_state_description_indeterminate">ਅੰਸ਼ਕ ਤੌਰ ਤੇ ਜਾਂਚ ਕੀਤੀ ਗਈ</string>

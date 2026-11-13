@@ -132,7 +132,7 @@
     <string name="privacy_promo">Mund të gjesh politikën e privatësisë këtu</string>
     <string name="sqrt_negative">Përdor numra realë</string>
     <string name="text_copied_toast">Teksti u kopjua</string>
-    <string name="timeout">S\'mund të llogaritet</string>
+    <string name="timeout">"S'mund të llogaritet"</string>
     <string name="title_current_expression">Shprehja aktuale</string>
     <string name="title_incomplete_history">Nuk mund të ketë qasje te historiku i plotë</string>
     <string name="title_no_space">Nuk mund të ruhet historiku i plotë</string>
