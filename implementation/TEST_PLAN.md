@@ -8,7 +8,7 @@ This record applies to the redesigned two-PIN source and APK. Smoke tests from a
 |---|---|---|
 | Compile native vault module | **PASS** | Gradle 8.7 `:vault:assembleRelease` completed. Java 8 source/target warnings under JDK 21 and a deprecation note are non-fatal. |
 | Rebuild from committed Apktool source (no APK input) | **PASS (local)** | `build-repack.sh implementation/apktool-project /tmp/CalcVault-from-source.apk` completed with Apktool 3.0.3, Gradle 8.7, and Android 35; v3 signature and ZIP integrity passed. No APK was downloaded or supplied. |
-| PR/push source-project workflow | **PENDING CI** | Workflow now points to `implementation/apktool-project` instead of the tracked APK; this revision's Actions run will confirm source-only build and artifact upload. Earlier APK-input workflow passed in [run #43707827908](https://github.com/AmethystCodingStuff/CalcVault/actions/runs/43707827908), but does not test this source-project update. |
+| PR/push source-project workflow | **PASS** | GitHub Actions run [#43709078116](https://github.com/AmethystCodingStuff/CalcVault/actions/runs/43709078116) built from `implementation/apktool-project` without downloading an APK, then uploaded the signed APK. The downloaded CI artifact passed v3 signature and ZIP-integrity checks; its SHA-256 is `5c8336587cb7dec6f399b18a75dc2068ccca8228584038b4a29cf111e83298e3`. |
 | APK signature | **PASS** | `apksigner verify` passed for v3; one local RSA-3072 signer. It is not signed by Google. |
 | APK ZIP integrity | **PASS** | `unzip -t` reported no errors. |
 | Package/DEX inspection | **PASS** | Package `com.google.android.calculator`, version 9.3, minSdk 29, targetSdk 37; launcher and private VaultActivity are in the manifest; `classes4.dex` is present. |
