@@ -1,6 +1,6 @@
 # CalcVault redesign build — verification record
 
-**Run date:** 2026-11-15. **Artifact:** `../artifacts/CalculatorVault.apk`. **SHA-256:** `7a53a249e940c8df7e1060c035444d6f72137ee04cee4642c1de8a68653a7ae3`.
+**Run date:** 2026-11-15. **Artifact:** `../artifacts/CalculatorVault.apk`. **SHA-256:** `08a741f453fe60e9835e26c91ac028613ef266db5c9e60f3b8d54502ce02220d`.
 
 This record applies to the redesigned two-PIN source and APK. Smoke tests from an earlier single-PIN proof of concept are historical only and do not validate the current implementation.
 
