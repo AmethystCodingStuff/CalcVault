@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConstraintSet android:id="@id/history_open_advanced_collapsed_normal_display_expanded" motion:deriveConstraintsFrom="@id/history_open_advanced_expanded_normal_display_expanded"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:motion="http://schemas.android.com/apk/res-auto">
+    <Constraint android:orientation="vertical" android:id="@id/advanced_basic_divider" motion:layout_constraintGuide_percent="@fraction/history_display_divider_screen_percent_end" />
+</ConstraintSet>

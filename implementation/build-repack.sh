@@ -2,14 +2,16 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
-ORIGINAL="${1:-}"
+SOURCE="${1:-$ROOT/apktool-project}"
 OUTPUT="${2:-$ROOT/build/CalculatorVault.apk}"
-: "${ORIGINAL:?Usage: build-repack.sh ORIGINAL.apk [OUTPUT.apk]}"
 : "${ANDROID_HOME:?Set ANDROID_HOME to an installed Android SDK}"
 : "${APKTOOL_JAR:?Set APKTOOL_JAR to apktool.jar}"
 GRADLE_BIN="${GRADLE_BIN:-gradle}"
 
-if [[ ! -f "$ORIGINAL" ]]; then echo "Missing original APK: $ORIGINAL" >&2; exit 2; fi
+if [[ ! -d "$SOURCE" && ! -f "$SOURCE" ]]; then
+    echo "Missing Apktool source directory or optional input APK: $SOURCE" >&2
+    exit 2
+fi
 ANDROID_JAR="$ANDROID_HOME/platforms/android-35/android.jar"
 [[ -f "$ANDROID_JAR" ]] || { echo "Missing $ANDROID_JAR (install Android platform 35)." >&2; exit 2; }
 BUILD_TOOLS="$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -1)"
@@ -32,7 +34,18 @@ BAKSMALI_CP="$(find "$ROOT/build/baksmali-runtime" -name '*.jar' -print | paste 
 [[ -n "$BAKSMALI_CP" ]] || { echo "Gradle did not resolve baksmali dependencies." >&2; exit 2; }
 java -cp "$BAKSMALI_CP" org.jf.baksmali.Main disassemble "$WORK/dex/classes.dex" -o "$WORK/smali"
 
-java -jar "$APKTOOL_JAR" d -f "$ORIGINAL" -o "$WORK/decoded"
+if [[ -d "$SOURCE" ]]; then
+    [[ -f "$SOURCE/AndroidManifest.xml" && -f "$SOURCE/apktool.yml" ]] || {
+        echo "Not a complete Apktool project directory: $SOURCE" >&2
+        exit 2
+    }
+    mkdir -p "$WORK/decoded"
+    cp -a "$SOURCE"/. "$WORK/decoded"/
+    # classes4.dex is generated only from the canonical Java vault module.
+    rm -rf "$WORK/decoded/smali_classes4"
+else
+    java -jar "$APKTOOL_JAR" d -f "$SOURCE" -o "$WORK/decoded"
+fi
 mkdir -p "$WORK/decoded/smali_classes4"
 cp -R "$WORK/smali"/. "$WORK/decoded/smali_classes4/"
 

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <fraction name="basic_bottom_screen_percent">1.0</fraction>
+    <fraction name="display_advanced_divider_screen_percent">0.3</fraction>
+    <fraction name="history_display_divider_screen_percent">0.0</fraction>
+    <fraction name="pad_button_style_round_percent">1.0</fraction>
+    <fraction name="result_exponent_text_color_alpha">0.75</fraction>
+</resources>

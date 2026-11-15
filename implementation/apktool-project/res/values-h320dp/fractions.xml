@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <fraction name="advanced_collapsed_basic_divider_screen_percent">@fraction/collapse_expand_button_keypad_divider_screen_percent</fraction>
+    <fraction name="advanced_expanded_basic_divider_screen_percent">0.63125</fraction>
+    <fraction name="collapse_expand_button_keypad_divider_screen_percent">0.41</fraction>
+    <fraction name="display_collapse_expand_button_divider_screen_percent">0.32</fraction>
+    <fraction name="history_display_divider_screen_percent">@fraction/toolbar_bottom_screen_percent</fraction>
+    <fraction name="history_open_advanced_collapsed_basic_divider_screen_percent">@fraction/history_open_collapse_expand_button_keypad_divider_screen_percent</fraction>
+    <fraction name="history_open_advanced_expanded_basic_divider_screen_percent">1.25875</fraction>
+    <fraction name="history_open_basic_bottom_screen_percent">1.54</fraction>
+    <fraction name="history_open_collapse_expand_button_keypad_divider_screen_percent">1.09</fraction>
+    <fraction name="history_open_display_collapse_expand_button_divider_screen_percent">1.0</fraction>
+    <fraction name="history_open_history_display_divider_screen_percent">0.76</fraction>
+    <fraction name="history_open_history_top_screen_percent">@fraction/toolbar_bottom_screen_percent</fraction>
+    <fraction name="history_partial_advanced_collapsed_basic_divider_screen_percent">@fraction/history_partial_collapse_expand_button_keypad_divider_screen_percent</fraction>
+    <fraction name="history_partial_advanced_expanded_basic_divider_screen_percent">0.71875</fraction>
+    <fraction name="history_partial_basic_bottom_screen_percent">1.0</fraction>
+    <fraction name="history_partial_collapse_expand_button_keypad_divider_screen_percent">0.55</fraction>
+    <fraction name="history_partial_display_collapse_expand_button_divider_screen_percent">0.46</fraction>
+    <fraction name="history_partial_history_display_divider_screen_percent">0.22</fraction>
+    <fraction name="history_partial_history_top_screen_percent">@fraction/toolbar_bottom_screen_percent</fraction>
+    <fraction name="history_top_screen_percent">-0.06</fraction>
+    <fraction name="toolbar_bottom_screen_percent">0.083</fraction>
+</resources>

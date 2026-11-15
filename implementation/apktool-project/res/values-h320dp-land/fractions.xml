@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <fraction name="advanced_collapsed_basic_divider_screen_percent">0.01</fraction>
+    <fraction name="advanced_expanded_basic_divider_screen_percent">0.3676</fraction>
+    <fraction name="collapse_expand_button_keypad_divider_screen_percent">0.47</fraction>
+    <fraction name="history_open_basic_bottom_screen_percent">1.96</fraction>
+    <fraction name="history_open_collapse_expand_button_keypad_divider_screen_percent">1.43</fraction>
+    <fraction name="history_open_display_collapse_expand_button_divider_screen_percent">1.24</fraction>
+    <fraction name="history_open_history_display_divider_screen_percent">0.7</fraction>
+    <fraction name="history_partial_basic_bottom_screen_percent">1.72</fraction>
+    <fraction name="history_partial_collapse_expand_button_keypad_divider_screen_percent">1.19</fraction>
+    <fraction name="history_partial_display_collapse_expand_button_divider_screen_percent">1.0</fraction>
+    <fraction name="history_partial_history_display_divider_screen_percent">0.46</fraction>
+    <fraction name="history_top_screen_percent">-0.14</fraction>
+    <fraction name="toolbar_bottom_screen_percent">0.16</fraction>
+</resources>

@@ -60,10 +60,10 @@ jobs:
             }
             printf '%s  %s\n' "$ORIGINAL_APK_SHA256" "$SOURCE_APK" | sha256sum --check --status
           fi
-          echo "CALCVAULT_SOURCE_APK=$SOURCE_APK" >> "$GITHUB_ENV"
-      - name: Use checked-in CalcVault APK as the PR/push base
+          echo "CALCVAULT_SOURCE=$SOURCE_APK" >> "$GITHUB_ENV"
+      - name: Use checked-in Apktool source project for PR/push builds
         if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
-        run: echo "CALCVAULT_SOURCE_APK=$GITHUB_WORKSPACE/artifacts/CalculatorVault.apk" >> "$GITHUB_ENV"
+        run: echo "CALCVAULT_SOURCE=$GITHUB_WORKSPACE/implementation/apktool-project" >> "$GITHUB_ENV"
       - name: Download pinned Apktool
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.original_apk_url != '' }}
         run: |
@@ -78,13 +78,13 @@ jobs:
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.original_apk_url != '' }}
         run: |
           set -euo pipefail
-          test -s "$CALCVAULT_SOURCE_APK"
+          test -e "$CALCVAULT_SOURCE"
           mkdir -p "$RUNNER_TEMP/calc-vault-output"
           ANDROID_HOME="$ANDROID_HOME" \
           APKTOOL_JAR="$RUNNER_TEMP/apktool.jar" \
           GRADLE_BIN="$(command -v gradle)" \
             bash implementation/build-repack.sh \
-              "$CALCVAULT_SOURCE_APK" \
+              "$CALCVAULT_SOURCE" \
               "$RUNNER_TEMP/calc-vault-output/CalculatorVault.apk"
       - name: Upload downloadable APK artifact
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.original_apk_url != '' }}

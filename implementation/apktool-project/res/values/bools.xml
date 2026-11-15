@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="abc_action_bar_embed_tabs">true</bool>
+    <bool name="feature_advanced_functions">false</bool>
+    <bool name="feature_display_top_rounded">false</bool>
+    <bool name="feature_history">false</bool>
+    <bool name="feature_history_collapsible">false</bool>
+    <bool name="feature_history_rounded">false</bool>
+    <bool name="is_tablet_landscape">false</bool>
+    <bool name="m3_focus_rings_enabled">false</bool>
+    <bool name="theme_light">true</bool>
+</resources>

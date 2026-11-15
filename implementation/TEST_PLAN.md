@@ -1,14 +1,14 @@
 # CalcVault redesign build — verification record
 
-**Run date:** 2026-11-15. **Artifact:** `../artifacts/CalculatorVault.apk`. **SHA-256:** `08a741f453fe60e9835e26c91ac028613ef266db5c9e60f3b8d54502ce02220d`.
+**Run date:** 2026-11-15. **Artifact:** `../artifacts/CalculatorVault.apk`. **SHA-256:** `3ef06ceba26b8947048900fc646a505c21aa006b61fbef29e06f076723f6f2d9`.
 
 This record applies to the redesigned two-PIN source and APK. Smoke tests from an earlier single-PIN proof of concept are historical only and do not validate the current implementation.
 
 | Check | Current result | Evidence / limits |
 |---|---|---|
 | Compile native vault module | **PASS** | Gradle 8.7 `:vault:assembleRelease` completed. Java 8 source/target warnings under JDK 21 and a deprecation note are non-fatal. |
-| Repack APK from checked-in CalcVault baseline | **PASS** | `build-repack.sh` and Apktool 3.0.3 completed against the prior signed CalcVault APK; its existing hook was recognized and not duplicated. A separate new APK was produced. |
-| PR/push APK workflow | **PASS** | GitHub Actions run [#43707827908](https://github.com/AmethystCodingStuff/CalcVault/actions/runs/43707827908) completed successfully: module compile, pinned Apktool repack, signature check, and artifact upload. CI artifact SHA-256: `a7b7e5076af2310937e133bfc9411329c4c56e4f99ac70320b9dd4ff8a777a32`. |
+| Rebuild from committed Apktool source (no APK input) | **PASS (local)** | `build-repack.sh implementation/apktool-project /tmp/CalcVault-from-source.apk` completed with Apktool 3.0.3, Gradle 8.7, and Android 35; v3 signature and ZIP integrity passed. No APK was downloaded or supplied. |
+| PR/push source-project workflow | **PENDING CI** | Workflow now points to `implementation/apktool-project` instead of the tracked APK; this revision's Actions run will confirm source-only build and artifact upload. Earlier APK-input workflow passed in [run #43707827908](https://github.com/AmethystCodingStuff/CalcVault/actions/runs/43707827908), but does not test this source-project update. |
 | APK signature | **PASS** | `apksigner verify` passed for v3; one local RSA-3072 signer. It is not signed by Google. |
 | APK ZIP integrity | **PASS** | `unzip -t` reported no errors. |
 | Package/DEX inspection | **PASS** | Package `com.google.android.calculator`, version 9.3, minSdk 29, targetSdk 37; launcher and private VaultActivity are in the manifest; `classes4.dex` is present. |

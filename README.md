@@ -14,6 +14,8 @@ CalcVault is a native Android vault patch for the user-provided Google Calculato
 ## Files
 
 - [`implementation/`](implementation/) — canonical authored Android source, Gradle configuration, test plan, and APK repack script.
+- [`implementation/apktool-project/`](implementation/apktool-project/) — complete Apktool-decoded project (manifest, resources, assets, and Smali) used as the default build source; no APK input is needed for normal builds.
+- [`implementation/APKTOOL_SOURCE.md`](implementation/APKTOOL_SOURCE.md) — explains provenance, which source is editable Java versus decoded Smali, and how to rebuild.
 - [`decompiled/CalculatorVault-9.3/`](decompiled/CalculatorVault-9.3/) — best-effort Java, Smali, and textual resource snapshots of the rebuilt APK.
 - [`docs/INSPECTION_REPORT.md`](docs/INSPECTION_REPORT.md) — reverse-engineering notes and current evidence/limitations.
 - [`docs/UI_REDESIGN.md`](docs/UI_REDESIGN.md) — visual system, screen inventory, and Mobbin-reference limitation.
@@ -24,18 +26,18 @@ CalcVault is a native Android vault patch for the user-provided Google Calculato
 
 ## Build
 
-For a full local repack, supply the original compatible Calculator 9.3 APK separately; it is intentionally not stored in this repository:
+The repository contains the full Apktool project needed for normal rebuilds. Install the pinned Apktool 3.0.3, Android SDK platform/build-tools, JDK 21, and Gradle 8.7, then build directly from the committed source tree:
 
 ```bash
 export ANDROID_HOME="$HOME/Android/Sdk"
 export APKTOOL_JAR=/path/to/apktool.jar
-# Use Gradle 8.7, JDK 17+ (the checked build used JDK 21), API 35, and build-tools 35.0.0.
-bash implementation/build-repack.sh /path/to/original-calculator-9.3.apk artifacts/CalculatorVault.apk
+# The Apktool source directory is the default input; no APK download is needed.
+bash implementation/build-repack.sh implementation/apktool-project artifacts/CalculatorVault.apk
 ```
 
-Every pull request targeting `main` (and every push to `main`) now compiles the native vault module, runs the version-pinned Apktool repack against the checked-in `artifacts/CalculatorVault.apk` baseline, signs the rebuilt APK with a temporary local test key, and uploads it as a downloadable workflow artifact for 30 days. The repack script detects the existing calculator hook so the baseline can be rebuilt without stacking duplicate hooks. Download the APK from the run's **Artifacts** section; no APK is committed by the PR job.
+Every pull request targeting `main` (and every push to `main`) compiles the native vault module, runs the version-pinned Apktool repack from `implementation/apktool-project`, signs the rebuilt APK with a temporary local test key, and uploads it as a downloadable workflow artifact for 30 days. Download it from that run's **Artifacts** section. The build no longer uses or downloads `artifacts/CalculatorVault.apk` as input.
 
-For a clean repack from an original compatible Calculator 9.3 APK, manually run **Android build** with an HTTPS URL to an original APK you are authorized to use; an optional SHA-256 input checks it. The original APK is downloaded only to the runner's temporary directory, and the result is uploaded as a short-lived artifact signed with a generated local test key. Apktool is invoked by the workflow on each PR; it is a decompiler/repacker rather than a continuous file watcher.
+An optional manual workflow input still accepts an HTTPS URL to a compatible Calculator 9.3 APK if you explicitly want to re-decode another base. This is not required for ordinary feature development or PR builds. Apktool generates Smali/resources rather than recovering Google's original Java source; the authored vault code remains in the Java module.
 
 ## Validation status — 2026-11-13
 
