@@ -8,7 +8,7 @@ This record applies to the redesigned two-PIN source and APK. Smoke tests from a
 |---|---|---|
 | Compile native vault module | **PASS** | Gradle 8.7 `:vault:assembleRelease` completed. Java 8 source/target warnings under JDK 21 and a deprecation note are non-fatal. |
 | Repack APK from checked-in CalcVault baseline | **PASS** | `build-repack.sh` and Apktool 3.0.3 completed against the prior signed CalcVault APK; its existing hook was recognized and not duplicated. A separate new APK was produced. |
-| PR/push APK workflow configuration | **PASS (local validation)** | Actions YAML parses; the workflow checks out the APK baseline, builds/repackages it with Apktool, and uploads the APK artifact. A GitHub Actions run is still needed to confirm the updated workflow end-to-end. |
+| PR/push APK workflow | **PASS** | GitHub Actions run [#43707827908](https://github.com/AmethystCodingStuff/CalcVault/actions/runs/43707827908) completed successfully: module compile, pinned Apktool repack, signature check, and artifact upload. CI artifact SHA-256: `a7b7e5076af2310937e133bfc9411329c4c56e4f99ac70320b9dd4ff8a777a32`. |
 | APK signature | **PASS** | `apksigner verify` passed for v3; one local RSA-3072 signer. It is not signed by Google. |
 | APK ZIP integrity | **PASS** | `unzip -t` reported no errors. |
 | Package/DEX inspection | **PASS** | Package `com.google.android.calculator`, version 9.3, minSdk 29, targetSdk 37; launcher and private VaultActivity are in the manifest; `classes4.dex` is present. |
