@@ -1,5 +1,4 @@
 name: Android build
-
 on:
   push:
     branches: [main]
@@ -15,41 +14,32 @@ on:
         description: Optional SHA-256 checksum for the supplied APK
         required: false
         type: string
-
 permissions:
   contents: read
-
 jobs:
-  compile-and-optionally-repack:
+  build-and-package:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
-
       - name: Set up Gradle 8.7
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.7'
-
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
           packages: platform-tools
-
       - name: Install Android platform and build-tools
-        run: |
-          sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
-
+        run: sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
       - name: Compile native vault module
         run: gradle -p implementation --no-daemon :vault:assembleRelease copyBaksmaliRuntime
-
-      - name: Repack complete Calculator APK (manual dispatch only)
+      - name: Download user-supplied original Calculator APK
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.original_apk_url != '' }}
         env:
           ORIGINAL_APK_URL: ${{ inputs.original_apk_url }}
@@ -60,11 +50,9 @@ jobs:
             https://*) ;;
             *) echo "The original APK URL must use HTTPS." >&2; exit 2 ;;
           esac
-
           SOURCE_APK="$RUNNER_TEMP/original-calculator-9.3.apk"
           curl --fail --location --retry 3 --proto '=https' --tlsv1.2 \
             "$ORIGINAL_APK_URL" --output "$SOURCE_APK"
-
           if [[ -n "$ORIGINAL_APK_SHA256" ]]; then
             [[ "$ORIGINAL_APK_SHA256" =~ ^[A-Fa-f0-9]{64}$ ]] || {
               echo "The optional SHA-256 input must contain exactly 64 hexadecimal characters." >&2
@@ -72,26 +60,37 @@ jobs:
             }
             printf '%s  %s\n' "$ORIGINAL_APK_SHA256" "$SOURCE_APK" | sha256sum --check --status
           fi
-
-          APKTOOL_JAR="$RUNNER_TEMP/apktool.jar"
+          echo "CALCVAULT_SOURCE_APK=$SOURCE_APK" >> "$GITHUB_ENV"
+      - name: Use checked-in CalcVault APK as the PR/push base
+        if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
+        run: echo "CALCVAULT_SOURCE_APK=$GITHUB_WORKSPACE/artifacts/CalculatorVault.apk" >> "$GITHUB_ENV"
+      - name: Download pinned Apktool
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.original_apk_url != '' }}
+        run: |
+          set -euo pipefail
           curl --fail --location --retry 3 --proto '=https' --tlsv1.2 \
             "https://github.com/iBotPeaches/Apktool/releases/download/v3.0.3/apktool_3.0.3.jar" \
-            --output "$APKTOOL_JAR"
+            --output "$RUNNER_TEMP/apktool.jar"
           printf '%s  %s\n' \
             'dbf930b076c6b9be08d57c449cacefc3bdd6b71ebd59b3066fc0e1f5b14f9423' \
-            "$APKTOOL_JAR" | sha256sum --check --status
-
-          mkdir -p artifacts
+            "$RUNNER_TEMP/apktool.jar" | sha256sum --check --status
+      - name: Repack full CalculatorVault APK
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.original_apk_url != '' }}
+        run: |
+          set -euo pipefail
+          test -s "$CALCVAULT_SOURCE_APK"
+          mkdir -p "$RUNNER_TEMP/calc-vault-output"
           ANDROID_HOME="$ANDROID_HOME" \
-          APKTOOL_JAR="$APKTOOL_JAR" \
+          APKTOOL_JAR="$RUNNER_TEMP/apktool.jar" \
           GRADLE_BIN="$(command -v gradle)" \
-            bash implementation/build-repack.sh "$SOURCE_APK" artifacts/CalculatorVault.apk
-
-      - name: Upload locally signed APK
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.original_apk_url != '' }}
+            bash implementation/build-repack.sh \
+              "$CALCVAULT_SOURCE_APK" \
+              "$RUNNER_TEMP/calc-vault-output/CalculatorVault.apk"
+      - name: Upload downloadable APK artifact
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.original_apk_url != '' }}
         uses: actions/upload-artifact@v4
         with:
-          name: CalcVault-Android-${{ github.run_number }}
-          path: artifacts/CalculatorVault.apk
+          name: CalcVault-Android-${{ github.run_number }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/calc-vault-output/CalculatorVault.apk
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 30

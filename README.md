@@ -20,7 +20,7 @@ CalcVault is a native Android vault patch for the user-provided Google Calculato
 - [`implementation/TEST_PLAN.md`](implementation/TEST_PLAN.md) — build, static, and runtime validation matrix.
 - [`artifacts/CalculatorVault.apk`](artifacts/CalculatorVault.apk) — current locally signed API 29+ test build.
 - [`artifacts/calculator-vault-source.zip`](artifacts/calculator-vault-source.zip) — source/decompilation archive; excludes the original APK, build outputs, and signing keys.
-- [`.github/workflows/android-build.yml`](.github/workflows/android-build.yml) — push/PR module compile and optional manual full-APK build.
+- [`.github/workflows/android-build.yml`](.github/workflows/android-build.yml) — push/PR full-APK build and downloadable Actions artifact.
 
 ## Build
 
@@ -33,7 +33,9 @@ export APKTOOL_JAR=/path/to/apktool.jar
 bash implementation/build-repack.sh /path/to/original-calculator-9.3.apk artifacts/CalculatorVault.apk
 ```
 
-GitHub Actions compiles the native vault module on pushes and pull requests. To build the complete APK in Actions, manually run **Android build** with an HTTPS URL to an original APK you are authorized to use; an optional SHA-256 input checks it. The original APK is downloaded only to the runner's temporary directory, and the resulting short-lived artifact is signed with a generated local test key.
+Every pull request targeting `main` (and every push to `main`) now compiles the native vault module, runs the version-pinned Apktool repack against the checked-in `artifacts/CalculatorVault.apk` baseline, signs the rebuilt APK with a temporary local test key, and uploads it as a downloadable workflow artifact for 30 days. The repack script detects the existing calculator hook so the baseline can be rebuilt without stacking duplicate hooks. Download the APK from the run's **Artifacts** section; no APK is committed by the PR job.
+
+For a clean repack from an original compatible Calculator 9.3 APK, manually run **Android build** with an HTTPS URL to an original APK you are authorized to use; an optional SHA-256 input checks it. The original APK is downloaded only to the runner's temporary directory, and the result is uploaded as a short-lived artifact signed with a generated local test key. Apktool is invoked by the workflow on each PR; it is a decompiler/repacker rather than a continuous file watcher.
 
 ## Validation status — 2026-11-13
 

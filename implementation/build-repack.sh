@@ -44,15 +44,21 @@ root=Path(sys.argv[1])
 smali=root/'smali_classes2'/'amw.smali'
 text=smali.read_text()
 needle='.method public final az()V\n    .locals 6\n'
+hook_call='invoke-static {p0}, Lcom/google/android/calculator/VaultHook;->intercept(Ljava/lang/Object;)Z'
 hook=(needle + '\n'
-      '    invoke-static {p0}, Lcom/google/android/calculator/VaultHook;->intercept(Ljava/lang/Object;)Z\n'
+      '    ' + hook_call + '\n'
       '    move-result v0\n'
       '    if-eqz v0, :vault_hook_continue\n'
       '    return-void\n'
       '    :vault_hook_continue\n')
 if text.count(needle) != 1:
     raise SystemExit('Expected one version-pinned amw.az()V block; aborting patch.')
-smali.write_text(text.replace(needle, hook, 1))
+existing=text.count(hook_call)
+if existing == 0:
+    text=text.replace(needle, hook, 1)
+elif existing != 1:
+    raise SystemExit('Expected zero or one existing VaultHook call; refusing to duplicate or alter the hook.')
+smali.write_text(text)
 
 manifest=root/'AndroidManifest.xml'
 ET.register_namespace('android','http://schemas.android.com/apk/res/android')
